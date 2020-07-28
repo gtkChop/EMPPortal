@@ -1,0 +1,25 @@
+{% extends 'profile/base.html' %}
+
+
+{% block profile_container %}
+    <div class="col-lg-3 col-md-3">
+        <div class="contents text-center h-100">
+            {% block aside_profile_section %}
+                {% with profile = profile or request.user %}
+                    {% include 'profile/snippets/profile_aside.html' %}
+                {% endwith %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-lg-9 col-md-9 contents">
+        {% block profile_search %}
+        {% endblock %}
+
+        {% block profile_details %}
+        {% endblock %}
+
+        {% block change_password %}
+        {% endblock %}
+    </div>
+{% endblock %}
+

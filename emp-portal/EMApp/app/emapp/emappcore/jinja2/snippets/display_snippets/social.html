@@ -1,0 +1,24 @@
+{% if key == "social_linkedin" %}
+    <a href="{{ data[key] }}" target="_blank">
+        <span class="p-1">
+            <i class="fab fa-linkedin"></i>
+        </span>{{ data[key] or "Not available" }}
+    </a>
+{% elif key == "social_github" %}
+    <a href="{{ data[key] }}" target="_blank">
+        <span class="p-1">
+            <i class="fab fa-github"></i>
+        </span>{{ data[key] or "Not available" }}
+    </a>
+{% elif key == "social_twitter"  %}
+    <a href="{{ data[key] }}" target="_blank">
+        <span class="p-1">
+            <i class="fab fa-twitter"></i>
+        </span>{{ data[key] or "Not available" }}
+    </a>
+{% else %}
+    <a href="{{ data[key] }}" target="_blank">
+        <span class="p-1">
+        </span>{{ data[key] or "Not available" }}
+    </a>
+{% endif %}

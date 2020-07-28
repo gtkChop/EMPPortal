@@ -1,0 +1,35 @@
+
+.tab-content{
+    padding: 20px;
+}
+
+.nav-tabs {
+    a {
+        background-color: transparentize($menu-bg, 0.3);
+    }
+    .nav-item{
+        .active{
+            background-color: $menu-bg;
+        }
+    }
+}
+
+.profile-details{
+    .profile-label {
+        background-color: $body-background-color;
+        border-top: 0;
+    }
+}
+
+.employee-search-card-stats{
+    background-color: $menu-bg;
+    .card-title {
+        color: $body-background-color;
+    }
+    h1 {
+        color: $body-background-color;
+    }
+    span {
+        opacity: 0.5;
+    }
+}

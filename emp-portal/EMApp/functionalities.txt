@@ -1,0 +1,149 @@
+                                Employee Task Management App Functionality
+
+
+********************************************************************************
+Application Flow:
+
+- Create employee (populate user and employee table)
+- Create Department
+- Create Project (this should contain project manager)
+- Add members to a project
+- project members can add task to projects that belongs to them
+
+********************************************************************************
+Functionality:
+
+- Admin can do all the above application flow
+- Admin/project manager/Department head can add members to a projects.
+- Employee can add tasks for a project/update their bio.
+
+********************************************************************************
+Access Control:
+
+- admin/sysadmin
+- create_department, update_department, delete_department (admin)
+- update_department (department_head - only some fields)
+- user_update, user_create, employee_create, check_employee_update, employee_delete - (admin)
+- user_update (user - only some fields)
+- project_create, project_update, project_delete, project_members_add, project_members_delete (admin, department_head)
+- project_update (project_manager - only some fields)
+- task_create, task_update, task_delete (all members who are tagged to at least one project)
+
+********************************************************************************
+Pages:
+
+- User page
+- Project page
+- Department page
+- News (internal)
+- blogs (internal)
+
+- Department dashboard
+- Project dashboard
+- Tasks dashboard
+
+*********************************************************************************
+Search Functionality:
+
+- Search members (firs name, last name, employee id, work email) - Es
+- Search projects (project title, desc, project id) - Es
+- Search department (db search - title, department id)
+- Search tasks (???? - )
+
+********************************************************************************
+Data Insert Functionality:
+
+- Add Employee (should contain data for table user and employee details)
+    admin adds employee to a portal
+- Add Department (Add department details)
+    should contain one user as department head
+- Add projects
+    Add project should contain one user as project manager
+    project manager/admin/department head adds employee to a project
+- Add tasks
+    Should contain project id that task belongs to
+    user should be a member of that project
+    tasks are created per employee and per project
+
+********************************************************************************
+Required Schemas:
+
+- Add Employee
+- Add Department
+- Add project
+- Add tasks
+
+********************************************************************************
+API:
+
+    create_employee
+    update_employee
+    delete_employee
+
+    create_department
+    update_department
+    delete_department
+
+    create_project
+    update_project
+    delete_project
+
+    create_task
+    update_task
+    delete_task
+
+    add_project_members
+    delete_project_members
+    update_project_members
+
+********************************************************************************
+DashBoard:
+
+- Department Dashboard/Statistics
+
+    Total Projects
+    Total Members
+    Total Budget/Department Budget
+
+    Graphs:
+        - Top 10 projects vs budget
+        - Top 10 projects vs members
+        - Project type vs count vs budget
+
+    search project
+
+- Project Dashboard
+
+    Project Manager, Total Members/project, Project Budget, start date, end date, Project type
+
+    Graphs:
+        - Task type vs total hours per week
+        - Total actual hours vs Total productivity hours
+
+- Employee Dashboard
+
+    Graphs:
+        - Per week hours spent on projects (5 weeks period)
+        - Hours spent on task type (per week)
+        - Actual hours vs Productivity (hrs except internal task types)
+        - line graph day vs hrs (2 weeks period) actual/productivity
+        - Indication on low in hours and unfilled time sheet
+
+
+********************************************************************************
+Future Development:
+
+- Leave management
+- Link github issues
+- chat application within users.
+
+
+
+
+
+
+
+
+Layout
+
+https://github.com/puikinsh/sufee-admin-dashboard/blob/master/index.html

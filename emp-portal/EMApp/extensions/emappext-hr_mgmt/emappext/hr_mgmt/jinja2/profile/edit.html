@@ -1,0 +1,108 @@
+{% extends 'profile/edit_base.html' %}
+
+{% block profile_form %}
+
+    {% if request.user.role == "admin" or request.user.role == "hr" %}
+        {% set exclude_items = [] %}
+    {% else %}
+        {% set exclude_items = [
+            "role"
+            "employee_id"
+        ] %}
+    {% endif %}
+
+    <div class="d-flex text-center h-100 employee-information">
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+            <div id="profile-edit-contents">
+                {% set schema_groups = u.get_schema_groups("employee_schema") %}
+
+                <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+                    {% for gp in schema_groups %}
+                        <li class="nav-item">
+                            {% if errors %}
+                                {% if errors | first in schema_groups[gp] %}
+                                    <a class="nav-link active" id="pane-{{ u.convert_string_to_html_id(gp) }}"
+                                       data-toggle="tab" href="#{{ u.convert_string_to_html_id(gp) }}" role="tab"
+                                       aria-controls="{{ u.convert_string_to_html_id(gp) }}" aria-selected="true">
+                                        <h6>{{ gp }}</h6>
+                                    </a>
+                                {% else %}
+                                    <a class="nav-link"
+                                       id="pane-{{ u.convert_string_to_html_id(gp) }}" data-toggle="tab"
+                                       href="#{{ u.convert_string_to_html_id(gp) }}" role="tab"
+                                       aria-controls="{{ u.convert_string_to_html_id(gp) }}" aria-selected="true">
+                                        <h6>{{ gp }}</h6>
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                <a class="nav-link {% if loop.index == 1 %} active {% endif %}"
+                                   id="pane-{{ u.convert_string_to_html_id(gp) }}" data-toggle="tab"
+                                   href="#{{ u.convert_string_to_html_id(gp) }}" role="tab"
+                                   aria-controls="{{ u.convert_string_to_html_id(gp) }}" aria-selected="true">
+                                    <h6>{{ gp }}</h6>
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="tab-content mt-3 mb-3">
+                {% for gp in schema_groups %}
+                    {% set html_id = u.convert_string_to_html_id(gp) %}
+                    {% if errors %}
+                        {% if errors | first in schema_groups[gp] %}
+                            <div class="tab-pane fade show active text-left"
+                             id="{{ u.convert_string_to_html_id(gp) }}" role="tabpanel"
+                             aria-labelledby="pane-{{ u.convert_string_to_html_id(gp) }}">
+                         {% else %}
+                             <div class="tab-pane fade text-left"
+                             id="{{ u.convert_string_to_html_id(gp) }}" role="tabpanel"
+                             aria-labelledby="pane-{{ u.convert_string_to_html_id(gp) }}">
+                         {% endif %}
+                    {% else %}
+                        <div class="tab-pane fade {% if loop.index == 1 %} show active {% endif %} text-left"
+                         id="{{ u.convert_string_to_html_id(gp) }}" role="tabpanel"
+                         aria-labelledby="pane-{{ u.convert_string_to_html_id(gp) }}">
+                    {% endif %}
+
+                        {% for key in schema_groups[gp] %}
+                            {% if key not in exclude_items %}
+                                {% if key in profile or action == "create" %}
+
+                                    {% set val = profile[key] %}
+                                    {% set form_field = schema.properties[key]["form_snippet"] %}
+                                    {% set is_required = true if key in schema.required else false %}
+                                    {% if not form_field %}
+                                        {% set form_field = "text_input.html" %}
+                                    {% endif %}
+
+                                    {% set form_snippet = 'snippets/form_snippets/' + form_field %}
+
+                                    {% with data=profile, key=key,
+                                            property=schema.properties[key],
+                                            is_required=is_required,
+                                            errors=errors %}
+                                        {% include form_snippet %}
+                                    {% endwith %}
+
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary text-center">Save Details</button>
+        </form>
+        {% if u.employee_verify_access("employee_delete", request.user) %}
+            {% if profile.id != request.user.id %}
+                {% with profile_id=profile.id, button_label="Delete",
+                        action="profile_delete",
+                        kwargs={'profile_id': profile.id or ''} %}
+                    {% include "snippets/form_snippets/delete_confirmation.html" %}
+                {% endwith %}
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,8 @@
+
+{% if file_name %}
+    <img src="{{ file_name }}"
+         class="img profile-image rounded-circle mb-3 {{ class_attributes or '' }}">
+{% else %}
+    <img src="{{ static('img/user-default-avatar.svg') }}"
+         class="img profile-image rounded-circle mb-3 {{ class_attributes or '' }}">
+{% endif %}

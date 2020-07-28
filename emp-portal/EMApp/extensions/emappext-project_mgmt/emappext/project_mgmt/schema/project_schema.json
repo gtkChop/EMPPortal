@@ -1,0 +1,149 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Create Projects",
+  "description": "This is minimum schema required to create projects",
+  "type": "object",
+
+  "properties": {
+
+    "project_title": {
+      "label": "Project Title",
+      "description": "Project Title",
+      "validators": "not_empty",
+      "help_text": "Project Title",
+      "display_snippet": "text.html",
+      "form_snippet": "",
+      "type": "string"
+    },
+
+    "project_id": {
+      "label": "Project Id",
+      "description": "Project Id",
+      "validators": "not_empty",
+      "help_text": "Unique identification for the project",
+      "display_snippet": "text.html",
+      "form_snippet": "text_input.html",
+      "type": "string"
+    },
+
+    "project_description": {
+      "label": "Project Description",
+      "description": "Short description on project",
+      "validators": "not_empty",
+      "help_text": "Short description on project",
+      "display_snippet": "text.html",
+      "form_snippet": "markdown_input.html",
+      "type": "string"
+    },
+
+    "project_type": {
+      "label": "Project Type",
+      "description": "Type of project",
+      "validators": "not_empty",
+      "help_text": "Project Type e.g. development, planning, maintenance",
+      "options": [
+        {
+          "label": "Planning",
+          "value": "planning"
+        },
+        {
+          "label": "Development",
+          "value": "development"
+        },
+        {
+          "label": "Maintenance",
+          "value": "maintenance"
+        }
+      ],
+      "display_snippet": "text.html",
+      "form_snippet": "",
+      "type": "string"
+    },
+
+    "project_manager": {
+      "label": "Project Manager",
+      "description": "Assign a project manager to this project",
+      "validators": "not_emtpy",
+      "help_text": "Assign a project manager to this project",
+      "display_snippet": "text.html",
+      "form_snippet": "employee_select.html",
+      "type": "string"
+    },
+
+    "project_tasks_link": {
+      "label": "Project Tasks Link",
+      "description": "Project tasks link (Also github issues repository) or anywhere all the tasks will be defined",
+      "validators": "ignore_missing",
+      "help_text": "Project tasks link (Also github issues repository) or anywhere all the tasks will be defined",
+      "display_snippet": "text.html",
+      "form_snippet": "link.html",
+      "type": "string"
+    },
+
+    "department_id": {
+      "label": "Department",
+      "description": "Department to which this project belongs to",
+      "validators": null,
+      "help_text": "Department to which this project belongs to",
+      "display_snippet": "text.html",
+      "form_snippet": "department_select.html",
+      "type": "string"
+    },
+
+    "contract_start_date": {
+      "label": "Contract Start Date",
+      "description": "Project Contract Start Date",
+      "validators": "not_empty date_validator",
+      "help_text": "Project Contract Start Date",
+      "display_snippet": "date.html",
+      "form_snippet": "",
+      "type": "string"
+    },
+
+    "contract_end_date": {
+      "label": "Contract End Date",
+      "description": "Project Contract End Date",
+      "validators": "not_empty date_validator",
+      "help_text": "Project Contract End Date",
+      "display_snippet": "date.html",
+      "form_snippet": "",
+      "type": "string"
+    },
+
+    "client_name": {
+      "label": "Client Name",
+      "description": "Client name if any",
+      "validators": "ignore_missing",
+      "help_text": "Client name if any",
+      "display_snippet": "text.html",
+      "form_snippet": "text_input.html",
+      "type": "string"
+    },
+
+    "client_point_of_contact_email": {
+      "label": "Client Point of Contact Email",
+      "description": "Point of contact",
+      "validators": "ignore_missing email_validator",
+      "help_text": "Client Point Of Contact",
+      "display_snippet": "text.html",
+      "form_snippet": "email_input",
+      "type": "string"
+    },
+
+    "client_point_of_contact_name": {
+      "label": "Client Point Of Contact Name",
+      "description": "Client Point Of Contact Name",
+      "validators": "ignore_missing",
+      "help_text": "Client Point Of Contact Name",
+      "display_snippet": "text.html",
+      "form_snippet": "text_input.html",
+      "type": "string"
+    }
+  },
+
+  "required": [
+    "project_title", "project_id", "project_description", "project_type",
+    "contract_start_date", "contract_end_date", "project_manager", "department"
+    ]
+
+}

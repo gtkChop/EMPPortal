@@ -1,0 +1,21 @@
+{% extends 'profile/base.html' %}
+
+{% block profile_container %}
+    {% if action == "edit" %}
+        <div class="col-lg-3 col-md-3">
+            <div class="contents text-center h-100">
+                {% block aside_profile_section %}
+                    {% with profile = profile, action=action or '' %}
+                        {% include 'profile/snippets/profile_aside.html' %}
+                    {% endwith %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9 contents">
+    {% else %}
+        <div class="container-fluid">
+    {% endif %}
+        {% block profile_form %}
+        {% endblock %}
+    </div>
+{% endblock %}

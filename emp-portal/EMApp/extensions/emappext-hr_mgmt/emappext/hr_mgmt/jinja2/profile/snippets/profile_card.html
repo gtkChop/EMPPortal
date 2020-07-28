@@ -1,0 +1,28 @@
+
+{% set logo_text = employee.first_name[0].upper() + employee.last_name[0].upper() %}
+
+<div class="card employee-search-card">
+
+   <div class="card-body">
+       <h6 class="card-title">
+           <div class="d-flex align-items-center">
+               <div class="user user-image-header ml-0" align="center" style="color: {{ u.generate_random_color_code() }};">
+                   {{ logo_text }}
+               </div>
+               <div class="pl-2 font-weight-bold">
+                   <a href="{{ url('profile', kwargs={'profile_id': employee.id}) }}">{{ employee.employee_id.upper() }}</a>
+               </div>
+           </div>
+       </h6>
+
+       <div class="text-summary">{{ employee.last_name}}, {{ employee.first_name }}</div>
+       <div class="text-summary">
+           <span class="p-1"><i class="fas fa-business-time"></i></span>
+            {{ employee.position.title() }}
+       </div>
+       <a href="mailto:{{ user.work_email }}" target="_blank"><span class="p-1 text-summary">
+            <i class="fas fa-envelope"></i></span>{{ employee.work_email }}
+       </a>
+   </div>
+
+</div>

@@ -1,0 +1,8 @@
+{% import 'macros/form.html' as form %}
+
+{% if property.help_text -%}
+    {{ form.info(
+        text=property.help_text,
+        inline=false
+        ) }}
+{% endif %}

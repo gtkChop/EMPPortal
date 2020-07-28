@@ -1,0 +1,44 @@
+<div class="container-fluid d-flex justify-content-end header p-2">
+
+    <div id="accordion">
+        <div class="float-left nav-item">
+            <a class="btn btn-link nav-link" data-toggle="collapse" data-target="#side-nav"
+                    aria-expanded="true" aria-controls="side-nav">
+                <i class="fas fa-bars"></i>
+            </a>
+        </div>
+    </div>
+
+<ul class="nav navbar-nav nav-flex-icons ml-auto flex-row mr-2">
+    {% if user.is_authenticated %}
+        <li class="nav-item dropdown show p-1">
+          <a class="btn btn-nav"
+             href="#" role="button" id="profile-settings" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-cogs"></i>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="profile-settings">
+              <a class="dropdown-item" href="{{ url('change_password') }}">
+                  <small>
+                      <i class="fas fa-key"></i>
+                      Change Password
+                  </small>
+              </a>
+              <a class="dropdown-item" href="{{ url('logout') }}">
+                  <small>
+                      <i class="fas fa-sign-out-alt fa-fw"></i>
+                      Logout
+                  </small>
+              </a>
+          </div>
+        </li>
+        <li class="nav-item p-1">
+            <a class="nav-link text-small btn btn-link" href="{{ url('profile') }}">
+                <small>Welcome {{ user.last_name }}, {{ user.first_name }}</small>
+           </a>
+        </li>
+
+    {% endif %}
+</ul>
+    </div>

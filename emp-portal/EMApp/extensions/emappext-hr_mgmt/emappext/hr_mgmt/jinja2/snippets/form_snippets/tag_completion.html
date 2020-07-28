@@ -1,0 +1,28 @@
+{% import 'macros/form.html' as form %}
+
+{% macro help_text() %}
+    {% with property=property %}
+        {% include 'snippets/form_snippets/help_text.html' %}
+    {% endwith %}
+{% endmacro %}
+
+{% call form.input_block(
+    "field-" + key,
+    label=property.label,
+    classes=['control-full'],
+    error=errors[key],
+    is_required=is_required,
+    extra_html=help_text()
+) %}
+
+{% set choices = data[key] %}
+<select multiple style="display: block" id="field-{{ key }}" name="{{ key }}" size=10
+  {{ form.attributes(dict({"class": "form-control tags-autocomplete"}, **property.get('form_attributes', {}))) }}>
+    {% for val in choices -%}
+      <option id="field-{{ key }}-{{ val.lower() }}"
+          value="{{ val.lower() }}" selected/>
+        {{ val.title() }}
+      </option>
+    {%- endfor -%}
+</select>
+{%- endcall -%}

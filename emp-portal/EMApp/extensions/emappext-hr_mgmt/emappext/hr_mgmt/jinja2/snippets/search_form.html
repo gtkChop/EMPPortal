@@ -1,0 +1,22 @@
+{% import 'macros/form.html' as form %}
+
+
+<form {% if form_id %}id="{{ form_id }}" {% endif %}
+      class="search-form{% if no_bottom_border %} no-bottom-border{% endif %} {{ class_attributes }}"
+      method="get" data-module="select-switch">
+
+  {% block search_input %}
+    <div class="input-group search-input-group">
+      <input aria-label="{% block header_site_search_label %}{{ placeholder }}{% endblock %}"
+             id="field-giant-search" type="text" class="form-control input-lg" name="q"
+             value="{{ query }}" autocomplete="off" placeholder="{{ placeholder }}">
+      {% block search_input_button %}
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit" value="search" aria-label="{{ 'Submit' }}">
+          <i class="fa fa-search"></i>
+        </button>
+      </span>
+      {% endblock %}
+    </div>
+  {% endblock %}
+</form>

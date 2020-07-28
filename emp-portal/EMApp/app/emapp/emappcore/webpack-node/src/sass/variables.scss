@@ -1,0 +1,38 @@
+
+/* All variables are mentioned here */
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+/* colors */
+$black: #000000;
+$white-color: #ffffff;
+$silver-color: #C0C0C0;
+$silver-color-dark: #424040;
+$secondary-color: #ffc107;
+
+/* body and fonts */
+$font-primary: 'Poppins',Arial, sans-serif;
+$body-background-color: #f1f2f7;
+$body-color: $silver-color-dark;
+$contents-bg-color: #ffffff;
+
+
+/* Menus */
+$menu-bg: #283e4a;
+$menu-color: $body-background-color;
+$nav-links-color: $body-background-color;
+$nav-link-hover-color: $menu-bg;
+$sidepanel-background: lighten($menu-bg, 5%);
+$card-background-color: lighten($menu-bg, 15%);
+
+/* content background color */
+$content-bg-color: $white-color;
+
+
+/* primary button colors */
+$primary: $menu-bg;
+$button-primary-background-color: $menu-bg;
+$button-primary-hover-background-color: lighten($menu-bg, 10%);
+$button-primary-hover-text-color: $body-background-color;
+$button-primary-text-color: $body-background-color;
+
+

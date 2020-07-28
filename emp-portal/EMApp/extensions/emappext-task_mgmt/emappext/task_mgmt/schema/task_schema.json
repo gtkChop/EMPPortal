@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Create Tasks",
+  "description": "This is minimum schema required to create tasks for a user",
+  "type": "object",
+
+  "properties": {
+
+    "task_date": {
+      "label": "Date",
+      "description": "Date at which you worked on a task.",
+      "validators": "not_empty date_validator",
+      "help_text": "Date at which you worked on a task.",
+      "display_snippet": "date.html",
+      "form_snippet": "date_picker.html",
+      "type": "string"
+    },
+
+    "project_id": {
+      "label": "Project Id",
+      "description": "Project Unique Id",
+      "validators": "not_empty",
+      "help_text": "Project Unique Id",
+      "display_snippet": null,
+      "form_snippet": "text_input.html",
+      "type": "string"
+    },
+
+    "task_summary": {
+      "label": "Task Description",
+      "description": "Description on the tasks performed",
+      "validators": "not_empty",
+      "help_text": "Description on the tasks performed - mark down field",
+      "display_snippet": "markdown.html",
+      "form_snippet": "markdown_input.html",
+      "type": "string"
+    },
+
+    "task_comments": {
+      "label": "Comments",
+      "description": "Comments of task",
+      "validators": "ignore_missing",
+      "help_text": "Comments on tasks if any blocker of difficulties - markdown field",
+      "display_snippet": "markdown.html",
+      "form_snippet": "markdown_input.html",
+      "type": "string"
+    },
+
+    "task_link": {
+      "label": "Link",
+      "description": "Any link where task is described in detail (github)",
+      "validators": "ignore_missing",
+      "help_text": "Any link where task is described in detail (github)",
+      "display_snippet": "link.html",
+      "form_snippet": "text_input.html",
+      "type": "string"
+    },
+
+    "task_type": {
+      "label": "Task Type",
+      "description": "Type of the task",
+      "validators": "not_empty",
+      "help_text": "Type of the task",
+      "options": [
+        {
+          "label": "Bug Fix",
+          "value": "bug_fix"
+        },
+        {
+          "label": "Enhancement",
+          "value": "enhancement"
+        },
+        {
+          "label": "Product Development",
+          "value": "overhead"
+        },
+        {
+          "label": "Client Meetings",
+          "value": "client_meetings"
+        },
+        {
+          "label": "Internal Meetings",
+          "value": "internal_meetings"
+        },
+        {
+          "label": "Overhead",
+          "value": "internal_overhead"
+        },
+        {
+          "label": "Admin",
+          "value": "internal_admin"
+        },
+        {
+          "label": "Infrastructure",
+          "value": "internal_infrastructure"
+        }
+
+      ],
+      "display_snippet": "text.html",
+      "form_snippet": "select_input.html",
+      "type": "string"
+    }
+  },
+
+  "required": [
+    "task_date", "project", "task_summary", "task_type"
+    ]
+
+}

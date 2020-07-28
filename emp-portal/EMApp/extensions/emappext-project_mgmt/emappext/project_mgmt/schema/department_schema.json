@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Create Department",
+  "description": "This is minimum schema required to create department",
+  "type": "object",
+
+  "properties": {
+
+    "title": {
+      "label": "Department Title",
+      "description": "Department Title",
+      "validators": "not_empty",
+      "help_text": "User friendly department Title",
+      "display_snippet": "text.html",
+      "form_snippet": "text_input.html",
+      "type": "string"
+    },
+
+    "short_name": {
+      "label": "Department Short Name",
+      "description": "Short name for the department",
+      "validators": "ignore_missing",
+      "help_text": "Short name for the department",
+      "display_snippet": "text.html",
+      "form_snippet": "text_input.html",
+      "type": "string"
+    },
+
+    "description": {
+      "label": "Department Description",
+      "description": "Short description on department",
+      "validators": "not_empty",
+      "help_text": "Short description on department",
+      "display_snippet": "text.html",
+      "form_snippet": "markdown_input.html",
+      "type": "string"
+    },
+
+    "location": {
+      "label": "Department Head Office",
+      "description": "Department Head Office",
+      "validators": "not_empty",
+      "help_text": "Department Head Office Country/City",
+      "display_snippet": "text.html",
+      "form_snippet": "text_input.html",
+      "type": "string"
+    },
+
+    "department_head": {
+      "label": "Department Head",
+      "description": "Department Head",
+      "validators": "not_empty",
+      "help_text": "Department Head",
+      "display_snippet": "text.html",
+      "form_snippet": "employee_select.html",
+      "type": "string"
+    }
+  },
+
+  "required": ["department_id", "title", "location", "description", "department_head"]
+
+}

@@ -1,0 +1,73 @@
+{% extends 'page.html' %}
+
+{% block sidepanel_profile_image %}
+    {% include 'profile/snippets/profile_image.html' %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid d-flex page-contents row w-100">
+        <div class="col-lg-3 col-md-3">
+            <div class="contents text-center h-100">
+                {% block aside_profile_section %}
+
+                    <div class="mb-4">
+                        {% block avatar %}
+                            {% with file_name = profile.avatar %}
+                                {% include 'profile/snippets/profile_image.html' %}
+                            {% endwith %}
+                            <h5>{{ u.get_user_full_name(profile) }}</h5>
+                        {% endblock %}
+                    </div>
+
+                    <div class="line-height-0">
+                        {% block profile_snippet_details %}
+                            <p class="mb-1">
+                                <span class="p-1"><i class="fas fa-id-card-alt"></i></span>
+                                {{ profile.employee_id.upper() }}
+                            </p>
+                            <p class="mb-1">
+                                <span class="p-1"><i class="fas fa-business-time"></i></span>
+                                {{ profile.position.title() }}
+                            </p>
+                            <p class="mb-1">
+                                <a href="mailto:{{ user.work_email }}" target="_blank"><span class="p-1">
+                                    <i class="fas fa-envelope"></i></span>{{ profile.work_email }}</a>
+                            </p>
+                            <p class="mb-4">
+                                <span class="p-1"><i class="fas fa-map-marker-alt"></i></span>
+                                {{ u.get_country_name(profile.work_country_code) }}
+                            </p>
+
+                            <div>
+                                <h3>About</h3>
+                                {% if user.bio %}
+                                    <p class="text-bio">{{ profile.bio|truncate(300,true) }}</p>
+                                {% else %}
+                                    <p class="text-bio">Nothing to show here yet.</p>
+                                {% endif %}
+                            </div>
+
+                            <div class="mb-4">
+                                <span class="p-1"><i class="fab fa-linkedin"></i></span>
+                                <span class="p-1"><i class="fab fa-github"></i></span>
+                                <span class="p-1"><i class="fab fa-twitter"></i></span>
+                            </div>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+
+        <div class="col-lg-9 col-md-9">
+            {% block profile_search %}
+            {% endblock %}
+
+            {% block profile_details %}
+            {% endblock %}
+
+            {% block edit_profile %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

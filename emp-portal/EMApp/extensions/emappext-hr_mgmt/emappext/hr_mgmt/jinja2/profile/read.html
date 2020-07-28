@@ -1,0 +1,84 @@
+{% extends 'profile/read_base.html' %}
+
+
+{% block profile_details %}
+    <div>
+        {% if u.employee_verify_access("employee_update", request.user, profile.get('employee_id')) %}
+            <div class="flex text-right">
+                <a class="btn btn-primary mb-2"
+                   href="{{ url('profile_edit', kwargs={'profile_id': profile.id}) }}" role="button">
+                    <span class="p-1">
+                        <i class="fas fa-pencil-alt"></i>
+                        Edit Details
+                    </span>
+                </a>
+            </div>
+        {% endif %}
+
+     <div class="d-flex text-center h-100 employee-information">
+
+    {% set exclude_items = [
+        "bio",
+        "position"
+        ] %}
+
+    {% set schema_groups = u.get_schema_groups("employee_schema") %}
+
+    <ul class="nav nav-pills nav-fill mt-2 mb-2" id="myTab" role="tablist">
+        {% for gp in schema_groups %}
+            <li class="nav-item">
+                <a class="nav-link {% if loop.index == 1 %} active {% endif %}" id="pane-{{ u.convert_string_to_html_id(gp) }}" data-toggle="tab" href="#{{ u.convert_string_to_html_id(gp) }}" role="tab"
+                   aria-controls="{{ u.convert_string_to_html_id(gp) }}" aria-selected="true">
+                    <h6>{{ gp }}</h6>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="tab-content mt-2">
+        {% for gp in schema_groups %}
+            <div class="tab-pane fade {% if loop.index == 1 %} show active {% endif %}"
+                 id="{{ u.convert_string_to_html_id(gp) }}" role="tabpanel"
+                 aria-labelledby="pane-{{ u.convert_string_to_html_id(gp) }}">
+                <div class="profile-details">
+                    <table class="table table-responsive-sm table-hover text-left profile-details">
+                        <tbody>
+                        {% for key in schema_groups[gp] %}
+
+                            {% if key not in exclude_items %}
+                                {% if key in profile %}
+
+                                    {% set val = profile[key] %}
+                                    {% set display_field = schema.properties[key]["display_snippet"] %}
+
+                                    {% if not display_field %}
+                                        {% set display_field = "text.html" %}
+                                    {% endif %}
+
+                                    {% set display_snippet = 'snippets/display_snippets/' + display_field %}
+
+                                    <tr>
+                                        <td scope="row" class="profile-label">
+                                            {{ schema.properties[key]["label"] }}
+                                        </td>
+                                        <td class="profile-item {% if not val %}text-summary{% endif %}">
+                                            {% with data=profile, key=key, property=schema.properties[key] %}
+                                                {% include display_snippet %}
+                                            {% endwith %}
+                                        </td>
+                                    <tr>
+
+                                {% endif %}
+                            {% endif %}
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+    </div>
+
+{% endblock %}

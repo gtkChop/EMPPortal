@@ -1,0 +1,182 @@
+# Core Application configuration
+# This will override any default settings by django
+# Configurations must be added in suitable section for maintainability
+
+###################################### SECTION 1 ##################################################
+# All core application configurations are added here
+
+ALLOWED_HOSTS:
+  - 'localhost'
+  - '127.0.0.1'
+
+DEBUG: False
+ENVIRONMENT: 'Development'
+
+# This section is add any custom/django extension.
+# This is of type append to an core/default installed apps
+INSTALLED_APPS:append:
+  - 'emappcore.apps.EMAppCoreConfig'
+  - 'emappext.hr_mgmt.apps.EMAppExtHRConfig'
+  - 'emappext.project_mgmt.apps.EMAppExtProjectConfig'
+  - 'emappext.task_mgmt.apps.EMAppExtTaskProjectConfig'
+
+MIDDLEWARE:append:
+  - 'corsheaders.middleware.CorsMiddleware'
+  - 'django.middleware.common.CommonMiddleware'
+
+###################################### SECTION 2 ##################################################
+
+# Application details
+APPLICATION_TITLE: 'Employee Management Portal'
+APPLICATION_SHORT_TITLE: 'EM App'
+COMPANY_NAME: 'Demo Ltd.'
+COMPANY_DESCRIPTION: 'This is the initial version of employee management app'
+
+# App CORS settings
+CORS_ORIGIN_ALLOW_ALL: True
+#CORS_ORIGIN_WHITELIST:
+#CORS_ORIGIN_REGEX_WHITELIST:
+#CORS_URLS_REGEX:
+#CORS_ALLOW_METHODS:
+
+# API configurations
+# Do not add / at the beging of the path and trailing should end with /
+APPLICATION_API_ENDPOINT: 'emapp/api/'
+
+# Custom user model
+AUTH_USER_MODEL: 'hr_mgmt.Employee'
+
+LOGIN_URL: "/login"
+LOGOUT_REDIRECT_URL: "/login"
+LOGIN_REDIRECT_URL: "/profile"
+
+# Terms of use string
+APPLICATION_TERMS_OS_USE_LINE1: "Entry to this site is restricted to employees and affiliates of "
+APPLICATION_TERMS_OS_USE_COPYRIGHT: "© 2020 Tobedecided. All Rights Reserved | Licence Agreement | Privacy Policy"
+
+# Email settings
+EMAIL_BACKEND: 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST: 'test.test.com'
+EMAIL_HOST_USER: 'test@test.com'
+EMAIL_HOST_PASSWORD: 'test'
+DEFAULT_FROM_EMAIL: 'abc@domain.com'
+SERVER_EMAIL: 'abc@domain.com'
+EMAIL_PORT: 25
+EMAIL_USE_TLS: 'true'
+
+# Database connection
+DATABASES:
+  default:
+    ENGINE: 'django.db.backends.postgresql_psycopg2'
+    NAME: 'emapp'
+    USER: 'emapp'
+    PASSWORD: 'emapp'
+    HOST: 'db'
+    PORT: ''
+
+
+# Redis for background tasks
+REDIS_HOST: 'redis'
+REDIS_PORT: 6379
+
+
+# Using redis cache
+CACHES:
+  default:
+    BACKEND: 'django_redis.cache.RedisCache'
+    LOCATION: '{REDIS_HOST}:{REDIS_PORT}'
+    OPTIONS:
+      DB: '1'
+      PARSER_CLASS: 'redis.connection.HiredisParser'
+      CONNECTION_POOL_CLASS: 'redis.BlockingConnectionPool'
+      PICKLE_VERSION: '-1'
+
+
+# Redis queues
+RQ_QUEUES:
+  high:
+    USE_REDIS_CACHE: 'default'
+  low:
+    USE_REDIS_CACHE: 'default'
+
+
+# Indexing Elastic search configuration
+ELASTICSEARCH_DSL:
+  default:
+    hosts: 'elasticsearch:9200'
+ELASTICSEARCH_DSL_AUTOSYNC: 'true'
+ELASTICSEARCH_DSL_AUTO_REFRESH: 'true'
+ELASTICSEARCH_DSL_PARALLEL: 'false'
+
+MAX_AVATAR_SIZE_BYTES: '2000000'
+AVATAR_FILE_FORMATS:
+  - 'png'
+  - 'jpeg'
+  - 'jpg'
+
+###################################### SECTION 3 ##################################################
+# Extension configuration must start with <ext_name><key>
+# Extension specific configuration is registered here.
+
+
+
+
+
+###################################### SECTION 4 ##################################################
+# This is the logging configuration for this application.
+#Register logging fo9r newly added extensions
+LOGGING:
+
+  version: 1
+  disable_existing_loggers: False
+
+  formatters:
+
+    emappcore_formatter:
+      format: "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s"
+      datefmt: "%d/%b/%Y %H:%M:%S"
+
+  handlers:
+
+    console:
+      class: 'logging.StreamHandler'
+      level: 'NOTSET'
+      formatter: 'emappcore_formatter'
+
+    mail_admins:
+      level: 'ERROR'
+      class: 'django.utils.log.AdminEmailHandler'
+
+  loggers:
+
+    # Django loggers
+    django:
+      handlers:
+        - 'console'
+      propagate: 'true'
+
+    django.request:
+      handlers:
+        - 'mail_admins'
+      propagate: 'true'
+      level: 'ERROR'
+      propagate: 'false'
+
+    # App loggers - Add all apps/extension loggers here
+    app:
+      handlers:
+        - 'console'
+      propagate: 'true'
+      level: 'DEBUG'
+
+    emappcore:
+      handlers:
+        - 'console'
+      propagate: 'true'
+      level: 'DEBUG'
+
+    emappext:
+      handlers:
+        - 'console'
+      propagate: 'true'
+      level: 'DEBUG'

@@ -1,0 +1,75 @@
+version: '2'
+volumes:
+  configuration:
+  postgres-db-volume:
+  elasticsearch-data:
+    driver: local
+networks:
+  default:
+services:
+  emp-portal:
+    hostname: ${HOST}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 50m
+    container_name: emp-portal
+    build:
+      context: ./emp-portal
+      dockerfile: Dockerfile
+    environment:
+      - SITE_HOST=${HOST}
+      - SITE_SCHEME=${SITE_SCHEME}://
+      - VIRTUAL_HOST=${HOST}
+      - VIRTUAL_PROTO=http
+      - LANG=C.UTF-8
+      - LC_ALL=C.UTF-8
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASS=${POSTGRES_PASS}
+      - POSTGRES_DB=${POSTGRES_DB}
+    depends_on:
+      - db
+      - elasticsearch
+      - redis
+    links:
+       - db
+       - elasticsearch
+       - redis
+    ports:
+       - "8800:8800"
+    volumes:
+       - "./emp-portal/EMApp/app/emapp/emappcore:/home/emp-portal/EMApp/app/emappcore"
+       - "./emp-portal/EMApp/extensions:/home/emp-portal/EMApp/extensions"
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.2
+    container_name: elasticsearch
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+      - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ports:
+     # Disable this from outside world by disabling the output port
+      - "9200:9200"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    mem_limit: 2g
+    cap_add:
+      - IPC_LOCK
+  redis:
+    container_name: redis
+    build:
+      context: ./redis
+      dockerfile: Dockerfile
+  db:
+    image: postgres:11.6
+    container_name: db
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASS=${POSTGRES_PASS}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data

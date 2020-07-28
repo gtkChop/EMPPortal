@@ -1,0 +1,9 @@
+{% if data[key] %}
+    {% set value = data[key].upper() %}
+{% else %}
+    {% set value = "Not available" %}
+{% endif %}
+<span class="p-1">
+    <i class="fas fa-id-card-alt"></i>
+    {{ value }}
+</span>

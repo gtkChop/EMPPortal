@@ -1,0 +1,10 @@
+{% if property.options %}
+    {% for op in property.options %}
+        {% if op.value == data[key] %}
+            {{ op['text'] }}
+            {% set value = op['text'] %}
+        {% endif %}
+    {% endfor %}
+{% else %}
+    {{ data[key] or "Not available" }}
+{% endif %}

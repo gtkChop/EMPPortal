@@ -1,0 +1,7 @@
+
+{% if data[key] %}
+    {% set values = u.list_slice(data[key], 0, 5) %}
+    {% for val in values %}
+        <button type="button" class="btn btn-outline-info btn-sm tags"># {{ val.title() }}</button>
+    {% endfor %}
+{% endif %}

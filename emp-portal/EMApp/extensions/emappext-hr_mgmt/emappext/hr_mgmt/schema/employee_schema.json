@@ -1,0 +1,405 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Create Employee",
+  "description": "This is minimum schema required to create employee",
+  "type": "object",
+
+  "properties": {
+
+    "first_name": {
+      "label": "First Name",
+      "placeholder": "First Name",
+      "validators": "not_empty",
+      "help_text": "",
+      "display_snippet": "text.html",
+      "form_snippet": "text_input.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member all",
+      "group_label": "Personal Information"
+    },
+
+    "middle_name": {
+      "label": "Middle Name",
+      "placeholder": "Middle Name",
+      "validators": "ignore_missing",
+      "help_text": "",
+      "display_snippet": "text.html",
+      "form_snippet": "text_input.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member",
+      "group_label": "Personal Information"
+    },
+
+    "last_name": {
+      "label": "Last Name",
+      "placeholder": "Last Name",
+      "validators": "not_empty",
+      "help_text": "",
+      "display_snippet": "text.html",
+      "form_snippet": "text_input.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member all",
+      "group_label": "Personal Information"
+    },
+
+    "date_of_birth": {
+      "label": "Date of Birth",
+      "placeholder": "Date of Birth",
+      "validators": "not_empty date_validator",
+      "help_text": "",
+      "display_snippet": "date.html",
+      "form_snippet": "date_picker.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member",
+      "group_label": "Personal Information"
+    },
+
+    "nationality_code": {
+      "label": "Nationality",
+      "placeholder": "Your Nationality",
+      "validators": "not_empty country_code_validator",
+      "help_text": "",
+      "display_snippet": "country.html",
+      "form_snippet": "country_input.html",
+      "type": "string",
+      "update": "admin hr",
+      "show": "admin hr member all",
+      "group_label": "Personal Information"
+    },
+
+    "work_email": {
+      "label": "Work Email Address",
+      "placeholder": "Work email address",
+      "validators": "not_empty email_validator",
+      "help_text": "",
+      "display_snippet": "email.html",
+      "form_snippet": "email.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member all",
+      "group_label": "Employee Information"
+    },
+
+    "contact_address": {
+      "label": "Address Line 1",
+      "placeholder": "Address",
+      "validators": "ignore_missing",
+      "help_text": "",
+      "display_snippet": "address_book.html",
+      "form_snippet": "text_input.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member",
+      "group_label": "Personal Information"
+    },
+
+    "contact_address_2": {
+      "label": "Address Line 2",
+      "placeholder": "Address",
+      "validators": "ignore_missing",
+      "help_text": "",
+      "display_snippet": "address_book.html",
+      "form_snippet": "text_input.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member",
+      "group_label": "Personal Information"
+    },
+
+    "contact_country_code": {
+      "label": "Country",
+      "placeholder": "Country",
+      "validators": "ignore_missing country_code_validator",
+      "help_text": "",
+      "display_snippet": "country.html",
+      "form_snippet": "country_input.html",
+      "type": "string",
+      "update": "admin hr",
+      "show": "admin hr member all",
+      "group_label": "Personal Information"
+    },
+
+    "contact_postal_code": {
+      "label": "Postal / Zip Code",
+      "placeholder": "Postal / Zip Code",
+      "validators": "ignore_missing",
+      "help_text": "",
+      "display_snippet": "location.html",
+      "form_snippet": "text_input.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member",
+      "group_label": "Personal Information"
+    },
+
+    "contact_ph": {
+      "label": "Phone Number (Ph no)",
+      "placeholder": "Ph no",
+      "validators": "not_empty",
+      "help_text": "",
+      "display_snippet": "phone.html",
+      "form_snippet": "text_input.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member",
+      "group_label": "Personal Information"
+    },
+
+    "bio": {
+      "label": "Bio",
+      "placeholder": "Bio",
+      "validators": "not_empty",
+      "help_text": "Bio or summary, this is a markdown field.",
+      "display_snippet": "markdown.html",
+      "form_snippet": "markdown_input.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member",
+      "group_label": "Personal Information"
+    },
+
+    "social_linkedin": {
+      "label": "Linked In Profile",
+      "placeholder": "Linked In Profile",
+      "validators": "ignore_missing url_validator",
+      "help_text": "",
+      "display_snippet": "social.html",
+      "form_snippet": "link.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member all",
+      "group_label": "Social Information"
+    },
+    "social_github": {
+      "label": "GitHub Profile",
+      "placeholder": "GitHub Profile",
+      "validators": "ignore_missing url_validator",
+      "help_text": "",
+      "display_snippet": "social.html",
+      "form_snippet": "link.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member all",
+      "group_label": "Social Information"
+    },
+    "social_twitter": {
+      "label": "Twitter",
+      "placeholder": "Twitter Profile",
+      "validators": "ignore_missing url_validator",
+      "help_text": "",
+      "display_snippet": "social.html",
+      "form_snippet": "link.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member all",
+      "group_label": "Social Information"
+    },
+
+    "graduation_level": {
+      "label": "Graduation Level",
+      "placeholder": "Your Graduation level",
+      "validators": "not_empty",
+      "help_text": "",
+      "display_snippet": "text.html",
+      "form_snippet": "select_input.html",
+      "type": "string",
+      "options": [
+        {
+          "text": "Bachelor or equivalent",
+          "value": "bachelor"
+        },
+        {
+          "text": "Master or equivalent",
+          "value": "master"
+        },
+        {
+          "text": "Doctoral or equivalent",
+          "value": "doctoral"
+        },
+        {
+          "text": "Diploma",
+          "value": "diploma"
+        },
+        {
+          "text": "Other",
+          "value": "other"
+        }
+      ],
+      "update": "admin hr member",
+      "show": "admin hr member",
+      "group_label": "Education Details"
+    },
+
+    "graduated_from": {
+      "label": "University/College",
+      "placeholder": "University/College Name",
+      "validators": "ignore_missing",
+      "help_text": "",
+      "display_snippet": "text.html",
+      "form_snippet": "text_input.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member",
+      "group_label": "Education Details"
+    },
+
+     "graduated_year": {
+      "label": "Date of Graduation",
+      "placeholder": "Graduated year",
+      "validators": "ignore_missing date_validator",
+      "help_text": "Date of graduation",
+      "display_snippet": "text.html",
+      "form_snippet": "date_picker.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member",
+      "group_label": "Education Details"
+    },
+
+    "employee_id": {
+      "label": "Employee Id",
+      "placeholder": "Employee Identification Number",
+      "validators": "not_empty",
+      "help_text": "Employee Identification Number",
+      "display_snippet": "employee_id.html",
+      "form_snippet": "text_input.html",
+      "type": "string",
+      "update": "admin hr",
+      "show": "admin hr member all",
+      "group_label": "Employee Information"
+    },
+
+    "joining_date": {
+      "label": "Date Of Joining",
+      "placeholder": "Date of joining",
+      "validators": "not_empty date_validator",
+      "help_text": "",
+      "display_snippet": "date.html",
+      "form_snippet": "date_picker.html",
+      "type": "string",
+      "update": "admin hr",
+      "show": "admin hr member",
+      "group_label": "Employee Information"
+    },
+
+    "position": {
+      "label": "Position / Title",
+      "placeholder": "Position / Title",
+      "validators": "not_empty",
+      "help_text": "",
+      "display_snippet": "text.html",
+      "form_snippet": "text_input.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member all",
+      "group_label": "Employee Information"
+    },
+
+    "work_country_code": {
+      "label": "Location",
+      "placeholder": "Location",
+      "validators": "not_empty country_code_validator",
+      "help_text": "",
+      "display_snippet": "country.html",
+      "form_snippet": "country_input.html",
+      "type": "string",
+      "update": "admin hr",
+      "show": "admin hr member all",
+      "group_label": "Employee Information"
+    },
+
+    "work_address": {
+      "label": "Address City/Branch",
+      "placeholder": "Address City/Branch",
+      "validators": "not_empty",
+      "help_text": "Location where the employee works from or office country/city/branch",
+      "display_snippet": "address_book.html",
+      "form_snippet": "text_input.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member all",
+      "group_label": "Employee Information"
+    },
+
+    "work_ph": {
+      "label": "Work Phone Number (Ph No)",
+      "placeholder": "Work telephone/desk ph no",
+      "validators": "ignore_missing",
+      "help_text": "",
+      "display_snippet": "phone.html",
+      "form_snippet": "text_input.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member all",
+      "group_label": "Employee Information"
+    },
+
+    "skills": {
+      "label": "Skills",
+      "placeholder": "Skills",
+      "validators": "ignore_missing",
+      "help_text": "List down all your skills - max 10",
+      "display_snippet": "skills.html",
+      "form_snippet": "tag_completion.html",
+      "type": "array",
+         "maxItems": 15,
+         "items": {
+           "type": "string"
+          },
+      "update": "admin hr member",
+      "show": "admin hr member",
+      "group_label": "Employee Information"
+    },
+
+    "experience": {
+      "label": "Work experience",
+      "placeholder": "Work Experience",
+      "description": "In years",
+      "validators": "ignore_missing number_validator",
+      "help_text": "Employee work experience so far (in years)",
+      "display_snippet": "text.html",
+      "form_snippet": "text_input.html",
+      "type": "string",
+      "update": "admin hr member",
+      "show": "admin hr member",
+      "group_label": "Employee Information"
+    },
+
+    "role": {
+      "label": "Role",
+      "description": "Change this only for admin user",
+      "validators": "not_empty",
+      "help_text": "Change this only if you want to create admin otherwise all users are members.",
+      "display_snippet": "text.html",
+      "form_snippet": "select_input.html",
+      "type": "string",
+      "options": [
+        {
+          "text": "Member",
+          "value": "member"
+        },
+        {
+          "text": "Admin",
+          "value": "admin"
+        },
+        {
+          "text": "HR",
+          "value": "hr"
+        }
+      ],
+      "update": "admin hr",
+      "show": "admin hr",
+      "group_label": "Employee Information"
+    }
+  },
+
+  "required": [
+    "date_of_birth", "first_name", "last_name", "work_email", "nationality_code",
+    "employee_id", "work_address", "work_country_code", "joining_date", "position", "role", "bio", "graduation_level"
+    ]
+
+}

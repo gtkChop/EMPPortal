@@ -1,0 +1,28 @@
+{% extends 'page.html' %}
+
+{% block sidenav_items %}
+    {{ super() }}
+    <li>
+        <ul class="list-unstyled" id="employeeSubmenu">
+            <li class="{{ u.is_active_url('profile', request) }} nav-item">
+                <a class="nav-link" href="{{ url('profile') }}"><i class="fas fa-user-circle"></i> My Profile</a>
+            </li>
+            <li class="{{ u.is_active_url('profile_search', request) }} nav-item">
+                <a class="nav-link" href="{{ url('profile_search') }}"><i class="fa fa-users" aria-hidden="true"></i>  Search Employee</a>
+            </li>
+            {% if u.employee_verify_access("employee_create", request.user) %}
+                <li class="{{ u.is_active_url('profile_new', request) }} nav-item">
+                    <a class="nav-link" href="{{ url('profile_new') }}"><i class="fas fa-user-plus"></i> Register New Employee</a>
+                </li>
+            {% endif %}
+        </ul>
+  </li>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-fluid d-flex page-contents row w-100">
+       {% block profile_container %}
+       {% endblock %}
+    </div>
+{% endblock %}

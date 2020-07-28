@@ -1,0 +1,18 @@
+{% import 'macros/form.html' as form %}
+
+{% call form.input(
+    key,
+    id='field-' + key,
+    label=property.label,
+    placeholder=property.placeholder,
+    value=data[key] or '',
+    error=errors[key],
+    attrs=dict({"class": "form-control"}, **(property.get('form_attributes', {}))),
+    is_required=is_required,
+    type='email'
+    )
+%}
+    {% with property=property %}
+        {% include 'snippets/form_snippets/help_text.html' %}
+    {% endwith %}
+{% endcall %}

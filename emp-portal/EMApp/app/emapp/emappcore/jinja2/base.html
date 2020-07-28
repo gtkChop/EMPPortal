@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="copyright" content="© W3C" />
+        <meta name="author" lang="en" content="" />
+        <meta name="robots" content="Index,Follow" />
+        <meta name="description"
+                content="The World Wide Web Consortium (W3C) is an international community
+                where Member organizations, a full-time staff,
+                and the public work together to develop Web standards." />
+        <meta name="keyword" content="W3C, HTML, CSS, SVG, Web standards" />
+    {% endblock %}
+
+    {% block styles %}
+        <link href="{{ static('css/index.min.css') }}" rel="stylesheet" type="text/css">
+    {% endblock %}
+
+    {% block javascript_head %}
+        <script type="text/javascript" src="{{ static('js/index.min.js') }}"></script>
+    {% endblock %}
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body {% block body_tag %}class="d-flex flex-column"{% endblock %}>
+
+    {% block body %}
+    {% endblock %}
+
+{% block scripts %} {% endblock %}
+</body>
+</html>

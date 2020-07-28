@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body_tag %} class="login" {% endblock %}
+
+{% block alert_message %}
+	{{ block.super }}
+{% endblock %}
+
+{% block container_tag %} class="container-fluid login-container" {% endblock %}
+
+{% block body %}
+	{% block login %}
+		<div class="d-flex justify-content-center h-100 login">
+			<div class="card">
+				<div class="card-header">
+					<h3 class="text-center">Login</h3>
+				</div>
+				<div class="card-body">
+					{% block etmapp_login_form %}
+						{% block authentication_error %}
+							{% if form.non_field_errors() %}
+							<div class='form-errors alert alert-danger alert-dismissible fade show' role="alert">
+								{% for error in form.non_field_errors() %}
+								<p><small>{{ error }}</small></p>
+								{% endfor %}
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    								<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							{% endif %}
+						{% endblock %}
+						<form method="POST">
+							<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+							<div class="input-group form-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user"></i></span>
+								</div>
+								<input type="text" class="form-control" name="username" placeholder="Employee Id">
+
+							</div>
+							<div class="input-group form-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-key"></i></span>
+								</div>
+								<input type="password" class="form-control" name="password" placeholder="password">
+							</div>
+							<div class="row align-items-center remember">
+								<input type="checkbox">Remember Me
+							</div>
+							<div class="form-group">
+								<input type="submit" value="Login" class="btn float-right button-primary">
+								<input type="hidden" name="next" value="{{ next }}" />
+							</div>
+						</form>
+					{% endblock %}
+				</div>
+				{% block forgot_password %}
+					<div class="card-footer">
+						<div class="d-flex justify-content-center">
+							<a class="link-white" href="/password_reset">Forgot your password?</a>
+						</div>
+						<div class="terms-services">
+							<p class="text-center"><strong>Terms of use</strong></p>
+							<p class="text-center">{{ u.get_application_terms_of_use_line1() }}</p>
+							<p class="text-center">{{ u.get_application_terms_of_use_copyrights() }}</p>
+						</div>
+					</div>
+				{% endblock %}
+			</div>
+		</div>
+	{% endblock %}
+
+{% endblock %}

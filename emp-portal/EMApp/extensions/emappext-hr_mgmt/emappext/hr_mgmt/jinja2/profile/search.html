@@ -1,0 +1,68 @@
+{% extends 'profile/read_base.html' %}
+
+{% block profile_search %}
+
+    {% block employee_stats %}
+        <div class="d-flex text-center employee-search-container mb-3">
+            <div class="card employee-search-card employee-search-card-stats">
+             <div class="card-body">
+                 <h1>
+                     <span class="p-1"><i class="fas fa-users"></i></span>
+                     {{ employee_count }}
+                 </h1>
+                 <h6 class="card-title">
+                     Total Employees
+                 </h6>
+             </div>
+                </div>
+            <div class="card employee-search-card employee-search-card-stats">
+            <div class="card-body">
+                <h1>
+                    <span class="p-1"><i class="fas fa-user-clock"></i></span>
+                    {{ 0 }}
+                </h1>
+                <h6 class="card-title">
+                    On Leave Today
+                </h6>
+             </div>
+
+            </div>
+        </div>
+    {% endblock %}
+
+    {% with placeholder="Search Employee", query=q or "", class_attributes="w-100" %}
+        <div class="d-flex flex-wrap text-center contents w-100">
+            {% include 'snippets/search_form.html' %}
+            {% if query %}
+                <div class="m-3">
+                    <h6 class="text-summary"> Found {{ result_count }} result for the query "{{ q }}" </h6>
+                </div>
+            {% endif %}
+        </div>
+    {% endwith %}
+
+    <div class="d-flex employee-search-container mt-3">
+
+
+        {% block employee_search_results %}
+
+            {% for employee in search_results %}
+                {% with employee=employee %}
+                    {% include 'profile/snippets/profile_card.html' %}
+                {% endwith %}
+            {% endfor %}
+
+        {% endblock %}
+
+    </div>
+
+    {% block paginations %}
+        <div class="container-fluid text-center mt-3">
+            {% with search_results=search_results, query=q or "" %}
+                {% include 'snippets/pagination.html' %}
+            {% endwith %}
+        </div>
+    {% endblock %}
+
+
+{% endblock %}

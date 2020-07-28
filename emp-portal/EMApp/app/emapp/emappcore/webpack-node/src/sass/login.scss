@@ -1,0 +1,47 @@
+body.login{
+     background-image: url('/static/img/login_bg_image.svg');
+     color: $white-color;
+     main {
+        height: 100%;
+     }
+}
+
+.remember{
+    color: $white-color;
+}
+
+.remember input{
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.login-container{
+    height: 100%;
+    align-content: center;
+}
+
+.login{
+    .card{
+        min-height: 370px;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 400px;
+        background-color: $menu-bg;
+    }
+    .card-header h3{
+        color: white !important;
+    }
+    .input-group-text{
+        background: $secondary-color;
+        color: $menu-bg;
+    }
+    .button-primary {
+        background: $secondary-color;
+        color: $menu-bg;
+        &:hover {
+            background: lighten($secondary-color, 20%);
+        }
+    }
+}

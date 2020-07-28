@@ -1,0 +1,44 @@
+<!-- Button trigger modal -->
+<a data-toggle="modal" data-target="#upload-avatar-modal">
+  <span class="p-1">
+    <i class="fas fa-pencil-alt"></i>
+    </span>
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="upload-avatar-modal" tabindex="-1" role="dialog"
+     aria-labelledby="upload-avatar-modal-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content image-upload-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" id="upload-avatar-modal-label">Upload Avatar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% with file_name = profile.avatar, class_attributes="image-preview-avatar" %}
+                {% include 'snippets/profile_image.html' %}
+          {% endwith %}
+      </div>
+      <div class="modal-footer">
+            <label class="btn btn-primary">
+                <i class="fas fa-upload"></i> Upload
+                <input id="avatar-upload" name="upload_avatar" type="file" hidden>
+            </label>
+            {% if profile.avatar %}
+                <button class="btn btn-primary btn-md" name="delete_avatar" type="submit" value="">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
+            {% endif %}
+            <button type="submit" class="btn btn-primary btn-md">
+                <i class="fas fa-save"></i> Save
+            </button>
+            <button type="button" class="btn btn-primary btn-md" data-dismiss="modal">
+                <i class="fas fa-times"></i>
+                Close
+            </button>
+      </div>
+    </div>
+  </div>
+</div>

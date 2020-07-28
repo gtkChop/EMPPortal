@@ -1,0 +1,30 @@
+{% import 'macros/form.html' as form %}
+
+{% set options=property.get('options', []) %}
+
+{% if not is_required %}
+  {% do options.append({'value': '', 'text': ''}) %}
+{%- endif -%}
+
+{%- if data[key] -%}
+  {%- set option_selected = data[key]|string -%}
+{%- else -%}
+  {%- set option_selected = None -%}
+{%- endif -%}
+
+{% call form.select(
+    key,
+    id='field-' + key,
+    label=property.label,
+    options=options,
+    selected=option_selected,
+    error=errors[key],
+    classes=['control-medium'],
+    attrs=dict({"class": "form-control select2-form"}, **(property.get('form_attributes', {}))),
+    is_required=is_required
+    )
+%}
+    {% with property=property %}
+        {% include 'snippets/form_snippets/help_text.html' %}
+    {% endwith %}
+{% endcall %}

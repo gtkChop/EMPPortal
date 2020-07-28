@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <header>
+        <div id="slide-out" class="side-nav fixed wide sn-bg-1">
+            <div id="side-nav" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="custom-sidenav">
+                    <div class="float-right p-1">
+                        <a class="btn btn-nav nav-link" data-toggle="collapse" data-target="#side-nav"
+                                aria-expanded="true" aria-controls="side-nav">
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </div>
+                    <div class="side-nav-profile-image mt-5 pt-2">
+                        {% block sidenav_image %}
+                            {% with file_name = request.user.avatar %}
+                                {% include 'snippets/profile_image.html' %}
+                            {% endwith %}
+                        {% endblock %}
+                    </div>
+                    <div class="container mt-5">
+                        <ul class="list-unstyled components">
+                            {% block sidenav_items %}
+                            {% endblock %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav navbar-header">
+                {% block header %}
+                    {% include "header.html" %}
+                {% endblock %}
+            </nav>
+        </div>
+    </header>
+
+    <main {% block main_tag %}class="container-fluid flex-fill"{% endblock %} >
+
+        {% block alert_message %}
+          {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible text-center d-flex justify-content-center" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message | safe }}
+                </div>
+            {% endfor %}
+          {% endif %}
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+
+
+    </main>
+
+    <footer class="page-footer font-small blue">
+        {% block footer %}
+            {% include "footer.html" %}
+        {% endblock %}
+    </footer>
+
+{% endblock %}

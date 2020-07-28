@@ -1,0 +1,27 @@
+{% import 'macros/form.html' as form %}
+
+{% set options = u.get_all_countries_select_option() %}
+
+{% if data[key] %}
+    {% set selected = data[key].upper() %}
+{% else %}
+    {% set selected = '' %}
+{% endif %}
+
+{% call form.select(
+    key,
+    id='field-' + key,
+    label=property.label,
+    options=options,
+    selected=selected,
+    error=errors[key],
+    classes=['control-medium'],
+    attrs=dict({"class": "form-control country-code select2-form w-100", "data-role": "select-dropdown"},
+                **(property.get('form_attributes', {}))),
+    is_required=is_required
+    )
+%}
+    {% with property=property %}
+        {% include 'snippets/form_snippets/help_text.html' %}
+    {% endwith %}
+{% endcall %}
