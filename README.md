@@ -68,7 +68,7 @@ Working on Extension 1
 * To check the logs: Run command ``` Make logs ```
 
 
-Hints For Dev:
+###### Hints For Dev:
 
 * Create your own branch for each feature.
 * If it looks good merge to branch dev.
