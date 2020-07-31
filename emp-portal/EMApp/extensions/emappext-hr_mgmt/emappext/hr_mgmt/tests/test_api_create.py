@@ -1,7 +1,7 @@
 from rest_framework.test import APITestCase
 from emappcore.utils import errors as core_err
 from emappext.hr_mgmt.tests import helper as h
-from emappext.hr_mgmt.tests import create_data
+from emappext.hr_mgmt.tests import test_data
 from django.db import IntegrityError
 from django.test import Client
 import os
@@ -82,7 +82,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             'Accept': 'application/json'
         }
 
-        res, code = h.create_employee(api_headers, create_data.test_data_created_by_admin)
+        res, code = h.create_employee(api_headers, test_data.test_data_created_by_admin)
         self.assertEqual(code, 200)
 
     def test_employee_create_api_with_hr_auth(self):
@@ -96,7 +96,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             'Accept': 'application/json'
         }
 
-        res, code = h.create_employee(api_headers, create_data.test_data_created_by_hr)
+        res, code = h.create_employee(api_headers, test_data.test_data_created_by_hr)
         self.assertEqual(code, 200)
 
     def test_employee_create_api_with_member_auth(self):
@@ -111,7 +111,7 @@ class EmployeeCreateAPITestCase(APITestCase):
         }
 
         with self.assertRaises(core_err.NotAuthorizedError):
-            res, code = h.create_employee(api_headers, create_data.test_data_created_by_member)
+            res, code = h.create_employee(api_headers, test_data.test_data_created_by_member)
 
     def test_employee_create_duplicate_record(self):
         """
@@ -126,7 +126,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             'Accept': 'application/json'
         }
 
-        res, code = h.create_employee(api_headers, create_data.test_data_created_by_hr)
+        res, code = h.create_employee(api_headers, test_data.test_data_created_by_hr)
         self.assertEqual(code, 200)
 
         # admin
@@ -137,7 +137,7 @@ class EmployeeCreateAPITestCase(APITestCase):
         }
 
         with self.assertRaises(IntegrityError):
-            res, code = h.create_employee(api_headers, create_data.test_data_created_by_hr)
+            res, code = h.create_employee(api_headers, test_data.test_data_created_by_hr)
 
         # hr
         api_headers = {
@@ -147,7 +147,7 @@ class EmployeeCreateAPITestCase(APITestCase):
         }
 
         with self.assertRaises(IntegrityError):
-            res, code = h.create_employee(api_headers, create_data.test_data_created_by_hr)
+            res, code = h.create_employee(api_headers, test_data.test_data_created_by_hr)
 
         # superuser
         api_headers = {
@@ -156,14 +156,14 @@ class EmployeeCreateAPITestCase(APITestCase):
             'Accept': 'application/json'
         }
         with self.assertRaises(IntegrityError):
-            res, code = h.create_employee(api_headers, create_data.test_data_created_by_hr)
+            res, code = h.create_employee(api_headers, test_data.test_data_created_by_hr)
 
     def test_employee_create_duplicate_employee_id(self):
         """
         Test employee with duplicate employee_id
         :return:
         """
-        duplicate_emp_id = create_data.test_data_created_by_member['employee_id']
+        duplicate_emp_id = test_data.test_data_created_by_member['employee_id']
         # Should be successful - first data
         # Super user
         api_headers = {
@@ -172,7 +172,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             'Accept': 'application/json'
         }
         # Create a first data as member
-        res, code = h.create_employee(api_headers, create_data.test_data_created_by_member)
+        res, code = h.create_employee(api_headers, test_data.test_data_created_by_member)
         self.assertEqual(code, 200)
 
         # admin
@@ -182,7 +182,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             'Accept': 'application/json'
         }
         # Hr data but same employee id
-        _data = create_data.test_data_created_by_hr
+        _data = test_data.test_data_created_by_hr
         _data['employee_id'] = duplicate_emp_id
         with self.assertRaises(IntegrityError):
             res, code = h.create_employee(api_headers, _data)
@@ -192,7 +192,7 @@ class EmployeeCreateAPITestCase(APITestCase):
        Test employee with duplicate work_email
        :return:
        """
-        duplicate_work_email = create_data.test_data_created_by_admin['work_email']
+        duplicate_work_email = test_data.test_data_created_by_admin['work_email']
         # Should be successful - first data
         # Super user
         api_headers = {
@@ -201,7 +201,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             'Accept': 'application/json'
         }
         # Create a first data as member
-        res, code = h.create_employee(api_headers, create_data.test_data_created_by_admin)
+        res, code = h.create_employee(api_headers, test_data.test_data_created_by_admin)
         self.assertEqual(code, 200)
 
         # admin
@@ -211,7 +211,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             'Accept': 'application/json'
         }
         # Hr data but same employee id
-        _data = create_data.test_data_created_by_member
+        _data = test_data.test_data_created_by_member
         _data['work_email'] = duplicate_work_email
         with self.assertRaises(IntegrityError):
             res, code = h.create_employee(api_headers, _data)
@@ -229,7 +229,7 @@ class EmployeeCreateAPITestCase(APITestCase):
         }
         # create hr
         with self.assertRaises(core_err.NotAuthorizedError):
-            res, code = h.create_employee(api_headers, create_data.test_data_created_by_hr)
+            res, code = h.create_employee(api_headers, test_data.test_data_created_by_hr)
 
     def test_employee_create_with_different_role(self):
         """
@@ -243,13 +243,13 @@ class EmployeeCreateAPITestCase(APITestCase):
         }
         # create hr
         with self.assertRaises(core_err.ValidationError):
-            _data = copy.deepcopy(create_data.test_data_created_by_hr)
+            _data = copy.deepcopy(test_data.test_data_created_by_hr)
             _data['role'] = "asdasdad"
             res, code = h.create_employee(api_headers, _data)
 
         # Missing role
         with self.assertRaises(core_err.ValidationError):
-            _data = copy.deepcopy(create_data.test_data_created_by_hr)
+            _data = copy.deepcopy(test_data.test_data_created_by_hr)
             _data['role'] = ""
             res, code = h.create_employee(api_headers, _data)
 
@@ -264,7 +264,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             'Accept': 'application/json'
         }
         # create hr
-        res, code = h.create_employee(api_headers, create_data.test_data_minimum_fields)
+        res, code = h.create_employee(api_headers, test_data.test_data_minimum_fields)
         self.assertEqual(code, 200)
 
     def test_employee_create_without_mandatory_field(self):
@@ -280,19 +280,19 @@ class EmployeeCreateAPITestCase(APITestCase):
         }
 
         with self.assertRaises(core_err.ValidationError):
-            _data = copy.deepcopy(create_data.test_data_minimum_fields)
+            _data = copy.deepcopy(test_data.test_data_minimum_fields)
             # without employee id
             del _data['employee_id']
             res, code = h.create_employee(api_headers, _data)
 
         with self.assertRaises(core_err.ValidationError):
-            _data = copy.deepcopy(create_data.test_data_created_by_hr)
+            _data = copy.deepcopy(test_data.test_data_created_by_hr)
             # without joining date
             del _data['joining_date']
             res, code = h.create_employee(api_headers, _data)
 
         with self.assertRaises(core_err.ValidationError):
-            _data = copy.deepcopy(create_data.test_data_created_by_member)
+            _data = copy.deepcopy(test_data.test_data_created_by_member)
             # without joining date
             del _data['nationality_code']
             res, code = h.create_employee(api_headers, _data)
@@ -310,38 +310,38 @@ class EmployeeCreateAPITestCase(APITestCase):
             'Accept': 'application/json'
         }
         with self.assertRaises(core_err.ValidationError):
-            _data = copy.deepcopy(create_data.test_data_created_by_hr)
+            _data = copy.deepcopy(test_data.test_data_created_by_hr)
             # without employee id
             _data['joining_date'] = "1992/01/01"
             res, code = h.create_employee(api_headers, _data)
 
         with self.assertRaises(core_err.ValidationError):
-            _data = copy.deepcopy(create_data.test_data_created_by_hr)
+            _data = copy.deepcopy(test_data.test_data_created_by_hr)
             # without employee id
             _data['joining_date'] = "1992-01-01"
             _data['first_name'] = ""
             res, code = h.create_employee(api_headers, _data)
 
         with self.assertRaises(core_err.ValidationError):
-            _data = copy.deepcopy(create_data.test_data_created_by_hr)
+            _data = copy.deepcopy(test_data.test_data_created_by_hr)
             # without employee id
             _data['work_country_code'] = "asdassda"
             res, code = h.create_employee(api_headers, _data)
 
         with self.assertRaises(core_err.ValidationError):
-            _data = copy.deepcopy(create_data.test_data_created_by_hr)
+            _data = copy.deepcopy(test_data.test_data_created_by_hr)
             # without employee id
             del _data['work_country_code']
             res, code = h.create_employee(api_headers, _data)
 
         with self.assertRaises(core_err.ValidationError):
-            _data = copy.deepcopy(create_data.test_data_created_by_hr)
+            _data = copy.deepcopy(test_data.test_data_created_by_hr)
             # without employee id
             _data['graduation_level'] = "masasdasdter"
             res, code = h.create_employee(api_headers, _data)
 
         with self.assertRaises(core_err.ValidationError):
-            res, code = h.create_employee(api_headers, create_data.test_data_member_role_link_error)
+            res, code = h.create_employee(api_headers, test_data.test_data_member_role_link_error)
 
     def test_employee_show(self):
         """
@@ -364,15 +364,15 @@ class EmployeeCreateAPITestCase(APITestCase):
             'content_type': 'application/json; charset=UTF-8',
             'Accept': 'application/json'
         }
-        employee_id = create_data.test_data_member_role['employee_id']
-        res, code = h.create_employee(api_headers_admin, create_data.test_data_member_role)
+        employee_id = test_data.test_data_member_role['employee_id']
+        res, code = h.create_employee(api_headers_admin, test_data.test_data_member_role)
         self.assertEqual(code, 200)
 
         # ********* Employee view by admin -> others profile
         res, code = h.show_employee(api_headers_admin, {"id": employee_id})
         self.assertEqual(code, 200)
         expected_keys = h.get_schema_keys_given_role("show", "admin")
-        result = h.delete_keys_from_employee_show(res['result'], del_keys=('id', 'created_at', 'updated_at'))
+        result = h.delete_keys_from_employee_show(res['result'], del_keys=('id', 'created_at', 'updated_at', 'avatar'))
         actual_keys = set([x for x in result])
         self.assertFalse(expected_keys.difference(actual_keys) or actual_keys.difference(expected_keys))
 
@@ -380,7 +380,7 @@ class EmployeeCreateAPITestCase(APITestCase):
         res, code = h.show_employee(api_headers_hr, {"id": employee_id})
         self.assertEqual(code, 200)
         expected_keys = h.get_schema_keys_given_role("show", "hr")
-        result = h.delete_keys_from_employee_show(res['result'], del_keys=('id', 'created_at', 'updated_at'))
+        result = h.delete_keys_from_employee_show(res['result'], del_keys=('id', 'created_at', 'updated_at', 'avatar'))
         actual_keys = set([x for x in result])
         self.assertFalse(expected_keys.difference(actual_keys) or actual_keys.difference(expected_keys))
 
@@ -388,7 +388,7 @@ class EmployeeCreateAPITestCase(APITestCase):
         res, code = h.show_employee(api_headers_member, {"id": employee_id})
         self.assertEqual(code, 200)
         expected_keys = h.get_schema_keys_given_role("show", "all")
-        result = h.delete_keys_from_employee_show(res['result'], del_keys=('id', 'created_at', 'updated_at'))
+        result = h.delete_keys_from_employee_show(res['result'], del_keys=('id', 'created_at', 'updated_at', 'avatar'))
         actual_keys = set([x for x in result])
         self.assertFalse(expected_keys.difference(actual_keys) or actual_keys.difference(expected_keys))
 
@@ -405,7 +405,7 @@ class EmployeeCreateAPITestCase(APITestCase):
         res, code = h.show_employee(api_headers_self, {"id": employee_id})
         self.assertEqual(code, 200)
         expected_keys = h.get_schema_keys_given_role("show", "member")
-        result = h.delete_keys_from_employee_show(res['result'], del_keys=('id', 'created_at', 'updated_at'))
+        result = h.delete_keys_from_employee_show(res['result'], del_keys=('id', 'created_at', 'updated_at', 'avatar'))
         actual_keys = set([x for x in result])
         self.assertFalse(expected_keys.difference(actual_keys) or actual_keys.difference(expected_keys))
 
@@ -433,7 +433,7 @@ class EmployeeCreateAPITestCase(APITestCase):
         }
 
         # Create employee by admin
-        data = copy.deepcopy(create_data.test_data_member_role)
+        data = copy.deepcopy(test_data.test_data_member_role)
         _email_id = data['work_email']
         _employee_id = data['employee_id']
         res, code = h.create_employee(api_headers_admin, data)
@@ -442,7 +442,7 @@ class EmployeeCreateAPITestCase(APITestCase):
 
         # ***************** Case 1: employee update by member role
         with self.assertRaises(core_err.NotAuthorizedError):
-            _data = copy.deepcopy(create_data.test_data_member_role)
+            _data = copy.deepcopy(test_data.test_data_member_role)
             _update_data = {
                 "id": _data['employee_id'],
                 "first_name": "asdasdasd"
@@ -513,7 +513,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             'content_type': 'application/json; charset=UTF-8',
             'Accept': 'application/json'
         }
-        _data = copy.deepcopy(create_data.test_data_member_role)
+        _data = copy.deepcopy(test_data.test_data_member_role)
         res, code = h.create_employee(api_headers_admin, _data)
         self.assertEqual(code, 200)
         _employee_id = res['result']['employee_id']
@@ -583,7 +583,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             'Accept': 'application/json'
         }
 
-        _data = copy.deepcopy(create_data.test_data_member_role)
+        _data = copy.deepcopy(test_data.test_data_member_role)
         res, code = h.create_employee(api_headers_admin, _data)
         self.assertEqual(code, 200)
         _employee_id = res['result']['employee_id']
@@ -691,7 +691,7 @@ class EmployeeCreateAPITestCase(APITestCase):
         }
 
         # **************** Case 1: delete employee by admin employee id
-        _data = copy.deepcopy(create_data.test_data_member_role)
+        _data = copy.deepcopy(test_data.test_data_member_role)
         res, code = h.create_employee(api_headers_admin, _data)
         self.assertEqual(code, 200)
         _employee_id = res['result']['employee_id']
@@ -702,7 +702,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             res, code = h.show_employee(api_headers_admin, {"id": _employee_id})
 
         # **************** Case 2: delete employee by hr employee id
-        _data = copy.deepcopy(create_data.test_data_member_role)
+        _data = copy.deepcopy(test_data.test_data_member_role)
         res, code = h.create_employee(api_headers_admin, _data)
         self.assertEqual(code, 200)
         _employee_id = res['result']['employee_id']
@@ -713,7 +713,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             res, code = h.show_employee(api_headers_admin, {"id": _employee_id})
 
         # **************** Case 3: delete employee by member
-        _data = copy.deepcopy(create_data.test_data_member_role)
+        _data = copy.deepcopy(test_data.test_data_member_role)
         res, code = h.create_employee(api_headers_admin, _data)
         self.assertEqual(code, 200)
         _employee_id = res['result']['employee_id']
@@ -722,7 +722,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             res, code = h.delete_employee(api_headers_member, {"id": _employee_id})
 
         # **************** Case 4: delete employee by admin id
-        _data = copy.deepcopy(create_data.test_data_created_by_hr)
+        _data = copy.deepcopy(test_data.test_data_created_by_hr)
         res, code = h.create_employee(api_headers_admin, _data)
         self.assertEqual(code, 200)
         _id = res['result']['id']
@@ -745,7 +745,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             "HTTP_API_KEY": self._admin_key
             # default is multipart/form
         }
-        _data = copy.deepcopy(create_data.test_data_created_by_hr)
+        _data = copy.deepcopy(test_data.test_data_created_by_hr)
         upload_avatar = open(os.path.join(_dir, "test_avtar.png"), "rb")
         _data['upload_avatar'] = upload_avatar
         response = client.post(api_url, _data, **api_headers_admin)
@@ -762,7 +762,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             'Accept': 'application/json'
         }
         # **************** Case 1: update employee avatar
-        _data = copy.deepcopy(create_data.test_data_member_role)
+        _data = copy.deepcopy(test_data.test_data_member_role)
         res, code = h.create_employee(api_headers_admin, _data)
         self.assertEqual(code, 200)
         _employee_id = res['result']['employee_id']
@@ -792,7 +792,7 @@ class EmployeeCreateAPITestCase(APITestCase):
             'content_type': 'application/json; charset=UTF-8',
             'Accept': 'application/json'
         }
-        _data = copy.deepcopy(create_data.test_data_member_role)
+        _data = copy.deepcopy(test_data.test_data_member_role)
         _data['contact_address'] = "Dublin City center"
         _data['contact_address_2'] = "Blackrock"
         res, code = h.create_employee(api_headers, _data)

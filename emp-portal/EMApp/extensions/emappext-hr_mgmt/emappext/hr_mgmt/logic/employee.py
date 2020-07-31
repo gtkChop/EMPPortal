@@ -153,7 +153,6 @@ def update_employee(app_context, data_dict):
 
             log.info("Updating the data and validating")
             _data.update(data_dict)
-
             schemas.validate("employee_schema", _data)
 
             # Insert operation

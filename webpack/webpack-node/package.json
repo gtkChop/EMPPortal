@@ -1,5 +1,5 @@
 {
-  "name": "etmapp-js-css",
+  "name": "emapp-js-css",
   "version": "1.0.0",
   "description": "CSS and JS bundle for ETMApp",
   "main": "config.js",

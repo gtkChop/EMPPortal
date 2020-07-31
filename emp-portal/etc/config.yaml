@@ -9,7 +9,7 @@ ALLOWED_HOSTS:
   - 'localhost'
   - '127.0.0.1'
 
-DEBUG: False
+DEBUG: True
 ENVIRONMENT: 'Development'
 
 # This section is add any custom/django extension.

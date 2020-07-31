@@ -15,7 +15,7 @@ module.exports = {
     mode: 'development',
     output: {
         filename: 'index.min.js',
-        path: '/Users/swaroop/Documents/ETMApp/app/etmapp/emappcore/static/js'
+        path: '/home/static/js'
     },
     module: {
         rules: [

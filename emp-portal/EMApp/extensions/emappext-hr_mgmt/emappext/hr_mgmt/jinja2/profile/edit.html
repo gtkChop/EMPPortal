@@ -96,7 +96,7 @@
             <button type="submit" class="btn btn-primary text-center">Save Details</button>
         </form>
         {% if u.employee_verify_access("employee_delete", request.user) %}
-            {% if profile.id != request.user.id %}
+            {% if profile.id != request.user.id and action=='edit' %}
                 {% with profile_id=profile.id, button_label="Delete",
                         action="profile_delete",
                         kwargs={'profile_id': profile.id or ''} %}

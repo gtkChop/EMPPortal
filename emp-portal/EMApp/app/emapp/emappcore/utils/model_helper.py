@@ -61,6 +61,8 @@ def model_dictize(db_models=None, db_extras=None, schema=None):
         for _model in db_models:
             if hasattr(_model, _property):
                 _val = getattr(_model, _property)
+                if _val is None:
+                    _val = ''
                 if isinstance(_val, datetime.date):
                     _val = str(_val)
                 result_dict[_property] = _val

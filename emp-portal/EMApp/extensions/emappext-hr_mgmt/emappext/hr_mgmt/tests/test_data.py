@@ -5,9 +5,11 @@ employee_admin = {
     "last_name": "Bhat",
     "work_email": "johnbhat@gmail.com",
     "nationality_code": "in",
-    "bio": "",
+    "bio": "An experienced software developer and researcher with a passion for developing AI tools and linked "
+               "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
+               "REST APIs, web-based applications and AI technologies like chatbots.",
     "contact_ph": "0899518704",
-    "graduation_level": "",
+    "graduation_level": "bachelor",
     "employee_id": "DLX-EMP1",
     "joining_date": "2018-10-01",
     "position": "Senior Software Developer",
@@ -26,15 +28,16 @@ employee_member = {
     "last_name": "James",
     "work_email": "merry_james@gmail.com",
     "nationality_code": "in",
-    "bio": "",
+    "bio": "An experienced software developer and researcher with a passion for developing AI tools and linked "
+               "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
+               "REST APIs, web-based applications and AI technologies like chatbots.",
     "contact_ph": "0899518705",
-    "graduation_level": "",
+    "graduation_level": "bachelor",
     "employee_id": "DLX-EMP2",
     "joining_date": "2018-10-01",
     "position": "Senior Software Developer",
     "work_country_code": "ie",
     "work_address": "Dublin",
-    "work_ph": "",
     "skills": ["python"],
     "experience": "4",
     "role": "member"
@@ -47,9 +50,11 @@ employee_hr = {
     "last_name": "Thomas",
     "work_email": "kenny_thomas@gmail.com",
     "nationality_code": "in",
-    "bio": "",
+    "bio": "An experienced software developer and researcher with a passion for developing AI tools and linked "
+               "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
+               "REST APIs, web-based applications and AI technologies like chatbots.",
     "contact_ph": "0899518706",
-    "graduation_level": "",
+    "graduation_level": "bachelor",
     "employee_id": "DLX-EMP3",
     "joining_date": "2018-10-01",
     "position": "Senior Software Developer",
@@ -69,9 +74,11 @@ test_data_created_by_admin = {
     "last_name": "Richard",
     "work_email": "robbie_richard@gmail.com",
     "nationality_code": "in",
-    "bio": "",
+    "bio": "An experienced software developer and researcher with a passion for developing AI tools and linked "
+               "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
+               "REST APIs, web-based applications and AI technologies like chatbots.",
     "contact_ph": "0899518706",
-    "graduation_level": "",
+    "graduation_level": "bachelor",
     "employee_id": "DLX-EMP4",
     "joining_date": "2018-10-01",
     "position": "Senior Software Developer",
@@ -91,9 +98,11 @@ test_data_created_by_hr = {
     "last_name": "Kamath",
     "work_email": "vignesh_kamath@gmail.com",
     "nationality_code": "in",
-    "bio": "",
+    "bio": "An experienced software developer and researcher with a passion for developing AI tools and linked "
+               "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
+               "REST APIs, web-based applications and AI technologies like chatbots.",
     "contact_ph": "0899518706",
-    "graduation_level": "",
+    "graduation_level": "bachelor",
     "employee_id": "DLX-EMP5",
     "joining_date": "2018-10-01",
     "position": "Senior Software Developer",
@@ -112,9 +121,11 @@ test_data_created_by_member = {
     "last_name": "Sanil",
     "work_email": "vinoop_sanil@gmail.com",
     "nationality_code": "in",
-    "bio": "",
+    "bio": "An experienced software developer and researcher with a passion for developing AI tools and linked "
+               "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
+               "REST APIs, web-based applications and AI technologies like chatbots.",
     "contact_ph": "0899518706",
-    "graduation_level": "",
+    "graduation_level": "bachelor",
     "employee_id": "DLX-EMP6",
     "joining_date": "2018-10-01",
     "position": "Senior Software Developer",
@@ -137,8 +148,12 @@ test_data_minimum_fields = {
     "work_address": "Dublin",
     "joining_date": "2018-10-01",
     "position": "Senior Software Developer",
+    "graduation_level": "bachelor",
     "contact_ph": "0899518706",
-    "role": "hr"
+    "role": "hr",
+    "bio": "An experienced software developer and researcher with a passion for developing AI tools and linked "
+               "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
+               "REST APIs, web-based applications and AI technologies like chatbots.",
 }
 
 test_data_member_role = {
@@ -148,9 +163,11 @@ test_data_member_role = {
     "last_name": "Sanil",
     "work_email": "vinoop_sanil@gmail.com",
     "nationality_code": "in",
-    "bio": "",
+    "bio": "An experienced software developer and researcher with a passion for developing AI tools and linked "
+               "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
+               "REST APIs, web-based applications and AI technologies like chatbots.",
     "contact_ph": "0899518706",
-    "graduation_level": "",
+    "graduation_level": "bachelor",
     "employee_id": "DLX-EMP8",
     "joining_date": "2018-10-01",
     "position": "Senior Software Developer",
@@ -170,9 +187,11 @@ test_data_member_role_link_error = {
     "last_name": "Sanil2",
     "work_email": "vinoop_sanil2@gmail.com",
     "nationality_code": "in",
-    "bio": "",
+    "bio": "An experienced software developer and researcher with a passion for developing AI tools and linked "
+               "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
+               "REST APIs, web-based applications and AI technologies like chatbots.",
     "contact_ph": "0899518706",
-    "graduation_level": "",
+    "graduation_level": "bachelor",
     "employee_id": "DLX-EMP20",
     "joining_date": "2018-10-01",
     "position": "Senior Software Developer",

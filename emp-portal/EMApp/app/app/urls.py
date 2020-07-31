@@ -18,5 +18,6 @@ from django.conf.urls.static import static
 from emappcore.tools import EMAppRoutes, EMAppRedirects
 
 urlpatterns = EMAppRoutes.get_routes_to_url_dispatcher() + EMAppRedirects.get_redirects_to_url_dispatcher() + \
-              static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
+              static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

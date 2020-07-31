@@ -2,7 +2,7 @@ import requests
 from emappcore.utils import errors as core_err
 from emappcore.common import schemas
 from emappext.hr_mgmt.utils import errors as hr_error
-from emappext.hr_mgmt.tests import create_data
+from emappext.hr_mgmt.tests import test_data
 from emappext.hr_mgmt.models import Employee
 from django.test import Client
 from django.db import IntegrityError
@@ -61,7 +61,11 @@ def create_superuser():
         "work_address": "Dublin",
         "joining_date": "2018-10-01",
         "position": "Developer",
+        "bio": "An experienced software developer and researcher with a passion for developing AI tools and linked "
+               "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
+               "REST APIs, web-based applications and AI technologies like chatbots.",
         "role": "admin",
+        "graduation_level": "bachelor",
         "contact_ph": "0899518706",
         "password": "test123456",
         "username": "gtkchop"
@@ -81,11 +85,11 @@ def get_api_key(user_type=None, email=None):
     if email:
         return Employee.generate_api_key(email)
     if user_type == "admin":
-        return Employee.generate_api_key(create_data.employee_admin['work_email'])
+        return Employee.generate_api_key(test_data.employee_admin['work_email'])
     elif user_type == "hr":
-        return Employee.generate_api_key(create_data.employee_hr['work_email'])
+        return Employee.generate_api_key(test_data.employee_hr['work_email'])
     elif user_type == "member":
-        return Employee.generate_api_key(create_data.employee_member['work_email'])
+        return Employee.generate_api_key(test_data.employee_member['work_email'])
     else:
         raise ValueError("User type not available")
 
@@ -95,7 +99,7 @@ def create_test_admin(headers=None):
     Create a test admin user
     :return:
     """
-    admin_data = create_data.employee_admin
+    admin_data = test_data.employee_admin
 
     return send_api_post(api_headers=headers, api_url=url.format("create_employee"), data=admin_data)
 
@@ -106,7 +110,7 @@ def create_test_hr(headers):
     :return:
     """
 
-    hr_data = create_data.employee_hr
+    hr_data = test_data.employee_hr
 
     return send_api_post(api_headers=headers, api_url=url.format("create_employee"), data=hr_data)
 
@@ -117,7 +121,7 @@ def create_test_member(headers):
     :return:
     """
 
-    member_data = create_data.employee_member
+    member_data = test_data.employee_member
 
     return send_api_post(api_headers=headers, api_url=url.format("create_employee"), data=member_data)
 

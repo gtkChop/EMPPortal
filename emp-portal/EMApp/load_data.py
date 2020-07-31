@@ -1,12 +1,12 @@
 import requests
 import json
 
-url_create = "http://127.0.0.1:8000/etmapp/api/create_employee"
-url_delete = "http://127.0.0.1:8000/etmapp/api/delete_employee"
+url_create = "http://localhost:8800/emapp/api/create_employee"
+url_delete = "http://localhost:8800/emapp/api/delete_employee"
 headers = {
     'Content-Type': 'application/json; charset=UTF-8',
     'Accept': 'application/json',
-    "API-KEY": "OZn5Q5No.7uSJpq7EeN2gUZrgS72Zfz0IrnLuxugT"
+    "API-KEY": "***"
 }
 
 data = [
@@ -21,7 +21,7 @@ data = [
                "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
                "REST APIs, web-based applications and AI technologies like chatbots.",
         "contact_ph": "0899518706",
-        "graduation_level": "",
+        "graduation_level": "bachelor",
         "employee_id": "ETM-1234PX",
         "joining_date": "2018-10-01",
         "position": "Senior Software Developer",
@@ -46,6 +46,7 @@ data = [
         "position": "Senior Software Developer",
         "contact_ph": "0899518706",
         "role": "hr",
+        "graduation_level": "bachelor",
         "bio": "An experienced software developer and researcher with a passion for developing AI tools and linked "
                        "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
                        "REST APIs, web-based applications and AI technologies like chatbots.",
@@ -63,6 +64,7 @@ data = [
         "position": "Human Resource",
         "contact_ph": "0899518706",
         "role": "hr",
+        "graduation_level": "bachelor",
         "bio": "An experienced software developer and researcher with a passion for developing AI tools and linked "
                        "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
                        "REST APIs, web-based applications and AI technologies like chatbots.",
@@ -78,7 +80,7 @@ data = [
                "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
                "REST APIs, web-based applications and AI technologies like chatbots.",
         "contact_ph": "0899518706",
-        "graduation_level": "",
+        "graduation_level": "bachelor",
         "employee_id": "ETM-1237PX",
         "joining_date": "2018-10-01",
         "position": "Director",
@@ -98,7 +100,7 @@ data = [
         "work_email": "neha@gmail.com",
         "nationality_code": "ie",
         "contact_ph": "0899518706",
-        "graduation_level": "",
+        "graduation_level": "bachelor",
         "employee_id": "DLX-EMP5",
         "joining_date": "2018-10-01",
         "position": "Manager",
@@ -123,6 +125,7 @@ data = [
         "position": "Team Lead",
         "contact_ph": "0899518706",
         "role": "member",
+        "graduation_level": "bachelor",
         "bio": "An experienced software developer and researcher with a passion for developing AI tools and linked "
                        "and open data applications.",
     },
@@ -137,7 +140,7 @@ data = [
                "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
                "REST APIs, web-based applications and AI technologies like chatbots.",
         "contact_ph": "0899518706",
-        "graduation_level": "",
+        "graduation_level": "bachelor",
         "employee_id": "ETM-12312PX",
         "joining_date": "2018-10-01",
         "position": "Junior Software Developer",
@@ -160,7 +163,7 @@ data = [
                "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
                "REST APIs, web-based applications and AI technologies like chatbots.",
         "contact_ph": "0899518706",
-        "graduation_level": "",
+        "graduation_level": "bachelor",
         "employee_id": "ETM-12322PX",
         "joining_date": "2018-10-01",
         "position": "Senior Software Developer",
@@ -183,7 +186,7 @@ data = [
                "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
                "REST APIs, web-based applications and AI technologies like chatbots.",
         "contact_ph": "0899518706",
-        "graduation_level": "",
+        "graduation_level": "bachelor",
         "employee_id": "ETM-1233PX",
         "joining_date": "2018-10-01",
         "position": "Senior Software Developer",
@@ -206,7 +209,7 @@ data = [
                "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
                "REST APIs, web-based applications and AI technologies like chatbots.",
         "contact_ph": "0899518706",
-        "graduation_level": "",
+        "graduation_level": "bachelor",
         "employee_id": "ETM-1243PX",
         "joining_date": "2018-10-01",
         "position": "Senior Software Developer",
@@ -229,7 +232,7 @@ data = [
                "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
                "REST APIs, web-based applications and AI technologies like chatbots.",
         "contact_ph": "0899518706",
-        "graduation_level": "",
+        "graduation_level": "bachelor",
         "employee_id": "ETM-1245PX",
         "joining_date": "2018-10-01",
         "position": "Senior Software Developer",
@@ -252,7 +255,7 @@ data = [
                "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
                "REST APIs, web-based applications and AI technologies like chatbots.",
         "contact_ph": "0899518706",
-        "graduation_level": "",
+        "graduation_level": "bachelor",
         "employee_id": "ETM-12436PX",
         "joining_date": "2018-10-01",
         "position": "Senior Software Developer",
@@ -275,7 +278,7 @@ data = [
                "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
                "REST APIs, web-based applications and AI technologies like chatbots.",
         "contact_ph": "0899518706",
-        "graduation_level": "",
+        "graduation_level": "bachelor",
         "employee_id": "ETM-1278PX",
         "joining_date": "2018-10-01",
         "position": "Senior Software Developer",
@@ -298,7 +301,7 @@ data = [
                "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
                "REST APIs, web-based applications and AI technologies like chatbots.",
         "contact_ph": "0899518706",
-        "graduation_level": "",
+        "graduation_level": "bachelor",
         "employee_id": "ETM-11322PX",
         "joining_date": "2018-10-01",
         "position": "Senior Software Developer",
@@ -321,7 +324,7 @@ data = [
                "and open data applications. Proven ability in developing Open Source Management System (CKAN), "
                "REST APIs, web-based applications and AI technologies like chatbots.",
         "contact_ph": "0899518706",
-        "graduation_level": "",
+        "graduation_level": "bachelor",
         "employee_id": "ETM-1279PX",
         "joining_date": "2018-10-01",
         "position": "Senior Software Developer",
@@ -344,6 +347,7 @@ def create_employees():
             headers=headers,
             data=json.dumps(item)
         )
+        print(resp.text)
         print(resp.json())
         print(resp.status_code)
     print("Done")
@@ -358,6 +362,7 @@ def delete_all_data():
                 "id": item.get('employee_id')
             })
         )
+
         print(resp.json())
         print(resp.status_code)
     print("Done Deleting")

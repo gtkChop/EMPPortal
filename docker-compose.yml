@@ -31,15 +31,13 @@ services:
       - db
       - elasticsearch
       - redis
-    links:
-       - db
-       - elasticsearch
-       - redis
     ports:
        - "8800:8800"
     volumes:
-       - "./emp-portal/EMApp/app/emapp/emappcore:/home/emp-portal/EMApp/app/emappcore"
+       - "./emp-portal/EMApp/app/emapp/emappcore:/home/emp-portal/EMApp/app/emapp/emappcore"
+       - "./emp-portal/EMApp/app/app:/home/emp-portal/EMApp/app/app"
        - "./emp-portal/EMApp/extensions:/home/emp-portal/EMApp/extensions"
+       - "./emp-portal/EMApp/load_data.py:/home/emp-portal/EMApp/load_data.py"
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.4.2
     container_name: elasticsearch
@@ -73,3 +71,17 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
+  webpack:
+   container_name: webpack
+   build:
+     context: ./webpack
+     dockerfile: Dockerfile
+   volumes:
+       - "./webpack/webpack-node/config.js:/home/webpack-node/config.js"
+       - "./webpack/webpack-node/package.json:/home/webpack-node/package.json"
+       - "./webpack/webpack-node/src:/home/webpack-node/src"
+       - "./emp-portal/EMApp/app/emapp/emappcore/static/css:/home/static/css"
+       - "./emp-portal/EMApp/app/emapp/emappcore/static/js:/home/static/js"
+   depends_on:
+     - emp-portal
+

@@ -123,11 +123,16 @@ DashBoard:
 - Employee Dashboard
 
     Graphs:
-        - Per week hours spent on projects (5 weeks period)
-        - Hours spent on task type (per week)
-        - Actual hours vs Productivity (hrs except internal task types)
-        - line graph day vs hrs (2 weeks period) actual/productivity
-        - Indication on low in hours and unfilled time sheet
+        Type: task
+            - Per week hours spent on projects (5 weeks period)
+            - Hours spent on task type (per week)
+            - Actual hours vs Productivity (hrs except internal task types)
+            - line graph day vs hrs (2 weeks period) actual/productivity
+            - Indication on low in hours and unfilled time sheet
+        Type HR MGMT:
+            - Applied leaves vs pending leaves
+            - Applied leaves vs leave types
+            - timesheet
 
 
 ********************************************************************************
@@ -136,11 +141,6 @@ Future Development:
 - Leave management
 - Link github issues
 - chat application within users.
-
-
-
-
-
 
 
 
