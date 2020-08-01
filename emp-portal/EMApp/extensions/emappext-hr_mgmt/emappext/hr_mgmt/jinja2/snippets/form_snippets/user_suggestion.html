@@ -1,0 +1,28 @@
+{% import 'macros/form.html' as form %}
+
+{% macro help_text() %}
+    {% with property=property %}
+        {% include 'snippets/form_snippets/help_text.html' %}
+    {% endwith %}
+{% endmacro %}
+
+{% call form.input_block(
+    "field-" + key,
+    label=property.label,
+    classes=['control-full'],
+    error=errors[key],
+    is_required=is_required,
+    extra_html=help_text()
+) %}
+{% set search_field = property.search_by or key %}
+{% set choice = data[key] %}
+<select style="display: block" id="field-{{ search_field }}" name="{{ key }}"
+  {{ form.attributes(dict({"class": "form-control employee-autocomplete"}, **property.get('form_attributes', {}))) }}>
+    {% if choice %}
+        <option id="field-{{ key }}-{{ choice }}"
+          value="{{ choice }}" selected/>
+        {{ choice }}
+        </option>
+    {% endif %}
+</select>
+{%- endcall -%}

@@ -369,6 +369,21 @@
       "group_label": "Employee Information"
     },
 
+     "reporting_manager": {
+      "label": "Reporting Manager",
+      "placeholder": "Enter managers email id",
+      "description": "Manager Email Id",
+      "validators": "ignore_missing",
+      "help_text": "Reporting Manager email id, whom does employee report to - only one manager can be selected",
+      "display_snippet": "employee.html",
+      "search_by": "work_email",
+      "form_snippet": "user_suggestion.html",
+      "type": "string",
+      "update": "admin hr",
+      "show": "admin hr member all",
+      "group_label": "Employee Information"
+    },
+
     "role": {
       "label": "Role",
       "description": "Change this only for admin user",

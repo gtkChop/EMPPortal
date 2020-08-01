@@ -4,12 +4,9 @@
 }
 
 .nav-tabs {
-    a {
-        background-color: transparentize($menu-bg, 0.3);
-    }
     .nav-item{
         .active{
-            background-color: $menu-bg;
+            background-color: $body-background-color;
         }
     }
 }

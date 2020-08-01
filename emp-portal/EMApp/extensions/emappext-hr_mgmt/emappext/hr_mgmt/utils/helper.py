@@ -39,6 +39,17 @@ def get_user_full_name(user_model):
     )
 
 
+def get_user_by_id(user_id):
+    """
+    Gte employee by id
+    :param user_id:
+    :return:
+    """
+    emp = Employee.get_employee_by_id(user_id)
+
+    return emp
+
+
 def get_schema_groups(schema_name):
     """
     Get schema grouop given schema group

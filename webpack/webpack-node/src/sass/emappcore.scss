@@ -334,6 +334,7 @@ i {
     padding: 10px;
     box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
     transition: box-shadow 84ms;
+    border-radius: 8px;
 }
 
 .employee-information{
@@ -502,11 +503,6 @@ i {
     }
 }
 
-.tab-content {
-    background: $body-background-color;
-    border-radius: 0.25rem;
-}
-
 .app-modal {
     .modal-body {
         background-color: $body-background-color;
@@ -523,3 +519,11 @@ i {
     }
 }
 
+.text-color-menu {
+    color: $menu_bg;
+}
+
+.text-bg {
+    background-color: $body-background-color;
+    border-radius: 8px;
+}

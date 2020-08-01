@@ -64,4 +64,44 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
 
+
+    $(".employee-autocomplete").select2({
+        createSearchChoice: function(term, data) {
+            if ($(data).filter(function() {
+              return this.text.localeCompare(term) === 0;
+            }).length === 0) {
+              return {
+                id: term,
+                text: term
+              };
+            }
+        },
+        minimumInputLength: 2,
+        maximumSelectionLength: 1,
+        createSearchChoice: function (term) {
+            return {
+                id: $.trim(term),
+                text: $.trim(term) + ' (new tag)'
+            };
+        },
+        multiple: true,
+        ajax: {
+            url: '/emapp/api/suggestion_employee_index',
+            dataType : "json",
+            contentType: "application/json; charset=utf-8",
+            data: function(term, page) {
+                var query = {
+                    search: term,
+                    search_field: $(this).attr("id")
+               }
+              return query;
+            },
+            processResults: function(data, params) {
+                return {
+                    results: data['result']
+                };
+            },
+        }
+    });
+
 });

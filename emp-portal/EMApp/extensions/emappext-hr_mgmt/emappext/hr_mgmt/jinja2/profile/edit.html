@@ -17,7 +17,7 @@
             <div id="profile-edit-contents">
                 {% set schema_groups = u.get_schema_groups("employee_schema") %}
 
-                <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+                <ul class="nav nav-tabs nav-justified profile-edit" id="myTab" role="tablist">
                     {% for gp in schema_groups %}
                         <li class="nav-item">
                             {% if errors %}

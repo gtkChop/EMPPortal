@@ -118,6 +118,7 @@ def update_employee(app_context, data_dict):
     role = app_context.get('role')
     _show_employee = u.core_convert_to_bool(data_dict.pop('show_employee', True))
     _id = data_dict.pop('id', None)
+
     _files = app_context.get('files', '')
     _schema = schemas.get_schema('employee_schema')
     log.info("Updating an employee for an id: {}".format(_id))

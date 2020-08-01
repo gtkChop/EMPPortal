@@ -39,7 +39,7 @@
 
         <div>
             <h3>About</h3>
-            {% if user.bio %}
+            {% if profile.bio %}
                 <p class="text-bio">{{ profile.bio|truncate(300,true) }}</p>
             {% else %}
                 <p class="text-bio">Nothing to show here yet.</p>

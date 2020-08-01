@@ -92,7 +92,8 @@ class EMAppHRManagementRegister(BaseAppCorePluginInterface, BaseAppRoutePluginIn
             "employee_verify_access": helper.employee_verify_access,
             "get_total_employee_count": helper.get_total_employee_count,
             "convert_string_to_html_id": helper.convert_string_to_html_id,
-            "convert_list_to_comma_separated_text": helper.convert_list_to_comma_separated_text
+            "convert_list_to_comma_separated_text": helper.convert_list_to_comma_separated_text,
+            "get_user_by_id": helper.get_user_by_id
         }
 
         for name in _utilities:

@@ -22,6 +22,7 @@ class Employee(BaseProfile):
     work_ph = models.CharField(max_length=100, blank=True)
     skills = ArrayField(models.CharField(max_length=50), size=30, default=list)
     experience = models.CharField(max_length=10, blank=True)
+    reporting_manager = models.CharField(max_length=50, null=True, blank=True)
     role = models.CharField(max_length=50, blank=False)
 
     REQUIRED_FIELDS = [
@@ -58,6 +59,20 @@ class Employee(BaseProfile):
         self.username = self.normalize_username(self.username)
         self.work_email = BaseUserManager.normalize_email(self.work_email)
 
+        if self.reporting_manager:
+            try:
+                _reporting_manager = Employee.get_employee_by_email(self.reporting_manager)
+            except err.NotFoundError:
+                log.error(self.reporting_manager)
+                raise err.ValidationError({
+                    "reporting_manager": "Given reporting manager not available"
+                })
+            if _reporting_manager.id == self.id:
+                raise err.ValidationError({
+                    "reporting_manager": "You cannot assign yourself as reporting manager"
+                })
+            self.reporting_manager = _reporting_manager.id
+
         if not hasattr(self, "_api_key") or not getattr(self, "_api_key"):
             log.info("Creating a new api key")
             api_key, key = APIKey.objects.create_key(name=self.work_email)
@@ -79,6 +94,26 @@ class Employee(BaseProfile):
             self.skills = list()
 
         return super(self.__class__, self).save(*args, **kwargs)
+
+    @classmethod
+    def get_employee_by_email(cls, email_id):
+        """
+        Gte employee by email id
+        :param email_id: str
+        :return: employee object
+        """
+        log.info("Getting a employee instance for a email id: {}".format(email_id))
+        _employees = cls.objects.filter(work_email__iexact=email_id)
+
+        if not _employees:
+            raise err.NotFoundError({
+                "employee_id_or_id": "Employee not found."
+            })
+        if len(_employees) > 1:
+            raise err.InternalServerError({
+                "employee_id": "Multiple employees for a given id"
+            })
+        return _employees[0]
 
     @classmethod
     def get_employee_by_id(cls, emp_id):

@@ -60,3 +60,20 @@ def validate_existing_user(key, value):
         })
     except err.NotFoundError:
         pass
+
+
+def check_if_user_exists(key, value):
+    """
+    Check if the given employee exists
+    :param key:
+    :param value:
+    :return:
+    """
+    try:
+        _employee = models.Employee.get_employee_by_id(value)
+    except err.NotFoundError:
+        raise err.ValidationError(
+            {
+                key: "Given employee not found"
+            }
+        )

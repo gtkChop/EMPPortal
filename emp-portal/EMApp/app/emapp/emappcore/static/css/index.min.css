@@ -7422,7 +7422,8 @@ i {
   background-color: #ffffff;
   padding: 10px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 3px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 84ms; }
+  transition: box-shadow 84ms;
+  border-radius: 8px; }
 
 .employee-information {
   flex-wrap: wrap;
@@ -7552,10 +7553,6 @@ i {
     background-color: #f1f2f7;
     transition: .3s all ease; }
 
-.tab-content {
-  background: #f1f2f7;
-  border-radius: 0.25rem; }
-
 .app-modal .modal-body {
   background-color: #f1f2f7;
   color: #283e4a; }
@@ -7567,6 +7564,13 @@ i {
 
 .app-modal .modal-footer {
   background-color: #314c5b; }
+
+.text-color-menu {
+  color: #283e4a; }
+
+.text-bg {
+  background-color: #f1f2f7;
+  border-radius: 8px; }
 
 body.login {
   background-image: url("/static/img/login_bg_image.svg");
@@ -7610,11 +7614,8 @@ body.login {
 .tab-content {
   padding: 20px; }
 
-.nav-tabs a {
-  background-color: rgba(40, 62, 74, 0.7); }
-
 .nav-tabs .nav-item .active {
-  background-color: #283e4a; }
+  background-color: #f1f2f7; }
 
 .profile-details .profile-label {
   background-color: #f1f2f7;

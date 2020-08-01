@@ -1,0 +1,8 @@
+{% if data[key] %}
+    {% set emp = u.get_user_by_id(data[key]) %}
+    <a href="{{ url('profile', kwargs={'profile_id': emp.id }) }}">
+        <i class="fas fa-id-card-alt"></i> {{ emp.last_name.title() }}, {{ emp.first_name.title() }} ({{ emp.employee_id.upper() }})
+    </a>
+{% else %}
+    {{ "Not available" }}
+{% endif %}

@@ -112,6 +112,7 @@ class EmployeeEditView(View):
                     }
                 )
             else:
+                data['id'] = profile_id or request.user.id
                 user_data = data
             extra_vars['profile'] = user_data
             extra_vars["schema"] = schemas.get_schema("employee_schema")
@@ -164,12 +165,12 @@ class EmployeeEditView(View):
             context['employee'] = _employee
             auth.employee_update(context)
 
-            data_dict["id"] = profile_id or request.user.id
-
             model_helper.clean_data_dict_for_api_calls(data_dict, params_to_delete=(
                 "upload_avatar",
                 "delete_avatar"
             ))
+
+            data_dict["id"] = profile_id or request.user.id
             api_action.post_actions(
                 "update_employee",
                 context,
