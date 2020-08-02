@@ -6,7 +6,8 @@
 .nav-tabs {
     .nav-item{
         .active{
-            background-color: $body-background-color;
+            background-color: $menu-bg;
+            color: $contents-bg-color;
         }
     }
 }

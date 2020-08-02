@@ -1,5 +1,27 @@
 {% extends 'profile/base.html' %}
 
+
+{% block breadcrumbs %}
+    {{ super() }}
+    {% if action == "create" %}
+        <li class="breadcrumb-item active" aria-current="page">
+           New
+        </li>
+    {% elif action == "edit" %}
+        {% if request.user.id != profile.id %}
+            <li class="breadcrumb-item" aria-current="page">
+                <a href="{{ url('profile', kwargs={'profile_id': profile.id} ) }}">
+                    {{ profile.last_name.title() }}, {{ profile.first_name.title() }}
+                </a>
+            </li>
+        {% endif %}
+        <li class="breadcrumb-item active" aria-current="page">
+           Edit
+        </li>
+    {% endif %}
+{% endblock %}
+
+
 {% block profile_container %}
     {% if action == "edit" %}
         <div class="col-lg-3 col-md-3">

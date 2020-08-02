@@ -204,7 +204,7 @@ def is_active_url(pattern, request):
     """
 
     try:
-        if pattern in PurePosixPath(request.path).parts:
+        if request.path == pattern:
             return 'active'
     except Exception as e:
         log.warning(e)

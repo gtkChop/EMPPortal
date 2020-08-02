@@ -7569,8 +7569,13 @@ i {
   color: #283e4a; }
 
 .text-bg {
-  background-color: #f1f2f7;
-  border-radius: 8px; }
+  background-color: #283e4a;
+  border-radius: 8px;
+  color: #ffffff; }
+
+.breadcrumb {
+  background-color: #ffffff;
+  border-radius: 0; }
 
 body.login {
   background-image: url("/static/img/login_bg_image.svg");
@@ -7615,7 +7620,8 @@ body.login {
   padding: 20px; }
 
 .nav-tabs .nav-item .active {
-  background-color: #f1f2f7; }
+  background-color: #283e4a;
+  color: #ffffff; }
 
 .profile-details .profile-label {
   background-color: #f1f2f7;

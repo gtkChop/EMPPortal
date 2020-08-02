@@ -524,6 +524,12 @@ i {
 }
 
 .text-bg {
-    background-color: $body-background-color;
+    background-color: $menu_bg;
     border-radius: 8px;
+    color: $contents-bg-color;
+}
+
+.breadcrumb{
+    background-color: $contents-bg-color;
+    border-radius: 0;
 }

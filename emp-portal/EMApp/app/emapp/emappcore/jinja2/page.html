@@ -35,7 +35,7 @@
         </div>
     </header>
 
-    <main {% block main_tag %}class="container-fluid flex-fill"{% endblock %} >
+    <main {% block main_tag %}class="container-fluid flex-fill"{% endblock %}>
 
         {% block alert_message %}
           {% if messages %}
@@ -49,6 +49,15 @@
             {% endfor %}
           {% endif %}
         {% endblock %}
+
+        <div class="container-fluid">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                {% block breadcrumbs %}
+                {% endblock %}
+                </ol>
+            </nav>
+        </div>
 
         {% block content %}
         {% endblock %}

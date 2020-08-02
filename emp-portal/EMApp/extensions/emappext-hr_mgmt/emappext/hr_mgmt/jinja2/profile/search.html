@@ -1,5 +1,13 @@
 {% extends 'profile/read_base.html' %}
 
+{% block breadcrumbs %}
+    {{ super() }}
+    <li class="breadcrumb-item active" aria-current="page">
+        Search
+    </li>
+{% endblock %}
+
+
 {% block profile_search %}
 
     {% block employee_stats %}

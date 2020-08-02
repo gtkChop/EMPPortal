@@ -1,5 +1,14 @@
 {% extends 'profile/read_base.html' %}
 
+{% block breadcrumbs %}
+    {{ super() }}
+    {% if request.user.id != profile.id %}
+        <li class="breadcrumb-item active" aria-current="page">
+           {{ profile.last_name.title() }}, {{ profile.first_name.title() }}
+        </li>
+    {% endif %}
+{% endblock %}
+
 
 {% block profile_details %}
     <div>

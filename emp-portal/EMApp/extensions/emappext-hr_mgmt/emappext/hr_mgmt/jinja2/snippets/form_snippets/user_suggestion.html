@@ -19,9 +19,10 @@
 <select style="display: block" id="field-{{ search_field }}" name="{{ key }}"
   {{ form.attributes(dict({"class": "form-control employee-autocomplete"}, **property.get('form_attributes', {}))) }}>
     {% if choice %}
-        <option id="field-{{ key }}-{{ choice }}"
-          value="{{ choice }}" selected/>
-        {{ choice }}
+        {% set val = u.get_user_by_id(choice).work_email %}
+        <option id="field-{{ key }}-{{ val }}"
+          value="{{ val }}" selected/>
+            {{ val }}
         </option>
     {% endif %}
 </select>
