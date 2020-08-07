@@ -1,3 +1,4 @@
 -e ./emappext-hr_mgmt
+-e ./emappext-task_mgmt
 -e ./emappext-project_mgmt
 -e ./emappext-task_mgmt

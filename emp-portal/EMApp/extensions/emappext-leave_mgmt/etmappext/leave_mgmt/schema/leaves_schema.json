@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Create Employee",
+  "description": "This is minimum schema required to create leaves",
+  "type": "object",
+
+  "properties": {
+
+    "from_date": {
+      "label": "From Date",
+      "placeholder": "From Date",
+      "validators": "not_empty date_validator",
+      "help_text": "",
+      "display_snippet": "date.html",
+      "form_snippet": "date_picker.html",
+      "update": "member",
+      "show": "admin hr member approver",
+      "type": "string"
+    },
+
+    "to_date": {
+      "label": "To Date",
+      "placeholder": "To Date",
+      "validators": "not_empty date_validator",
+      "help_text": "",
+      "display_snippet": "date.html",
+      "form_snippet": "date_picker.html",
+      "update": "member",
+      "show": "admin hr member approver",
+      "type": "string"
+    },
+
+    "comments": {
+      "label": "Comments",
+      "placeholder": "Comments",
+      "validators": "ignore_missing",
+      "help_text": "Add comments or reason for leave (This will be helpful for the approver.",
+      "display_snippet": "markdown.html",
+      "form_snippet": "markdown_input.html",
+      "update": "member",
+      "show": "admin hr member approver",
+      "type": "string"
+    },
+
+    "approver_comments": {
+      "label": "Comments",
+      "placeholder": "Comments",
+      "validators": "ignore_missing",
+      "help_text": "Add comments or reason to approve or reject leaves",
+      "display_snippet": "markdown.html",
+      "form_snippet": "markdown_input.html",
+      "update": "approver",
+      "show": "admin hr member approver",
+      "type": "string"
+    },
+
+    "need_approval": {
+      "label": "Need Approval?",
+      "placeholder": "",
+      "validators": "not_empty",
+      "help_text": "If need approval, this will go to pending state.",
+      "display_snippet": "markdown.html",
+      "form_snippet": "markdown_input.html",
+      "update": "member",
+      "show": "admin hr member approver",
+      "type": "string"
+    },
+
+    "leave_status": {
+      "label": "Leave Status",
+      "placeholder": "Leave Status",
+      "validators": "not_empty",
+      "help_text": "Change this to approve or reject leaves.",
+      "display_snippet": "text.html",
+      "form_snippet": "select_input.html",
+      "type": "string",
+      "update": "approver",
+      "show": "admin hr member approver",
+      "options": [
+        {
+          "text": "Approved",
+          "value": "approved"
+        },
+        {
+          "text": "Pending",
+          "value": "pending"
+        },
+        {
+          "text": "withdrawn",
+          "value": "withdrawn"
+        }
+      ]
+    },
+
+    "leave_type": {
+      "label": "Leave Type",
+      "placeholder": "Leave Type",
+      "validators": "not_empty",
+      "help_text": "Type of leave",
+      "display_snippet": "text.html",
+      "form_snippet": "select_input.html",
+      "type": "string",
+      "update": "member",
+      "show": "admin hr member approver",
+      "options": [
+        {
+          "text": "Sick Leave",
+          "value": "sl"
+        },
+        {
+          "text": "Casual Leave",
+          "value": "cl"
+        },
+        {
+          "text": "Annual Leave",
+          "value": "al"
+        },
+        {
+          "text": "Others",
+          "value": "othrs"
+        }
+      ]
+    }
+  },
+
+  "required": [
+    "from_date", "to_date", "leave_type", "leave_status"
+    ]
+
+}

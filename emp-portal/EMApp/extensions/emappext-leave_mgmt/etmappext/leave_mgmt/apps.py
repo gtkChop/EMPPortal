@@ -1,9 +1,9 @@
 from django.apps import AppConfig
 
 
-class EMAppExtHRConfig(AppConfig):
+class EMAppExtLeaveConfig(AppConfig):
     """
-    Core Employee HR Management Config process.
+    Core Employee Leave Management Config process.
 
     Attributes:
         name: name of the plugin
@@ -11,6 +11,6 @@ class EMAppExtHRConfig(AppConfig):
     Methods:
         ready: This is where app collects information from all the installed apps/plugins
     """
-    name = 'emappext.hr_mgmt'
-    verbose_name = "HR employee management extension - base employee model"
-    label = "hr_mgmt"
+    name = 'emappext.leave_mgmt'
+    verbose_name = "Employee Leave Management Extension"
+    label = "leave_mgmt"
