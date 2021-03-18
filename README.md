@@ -4,6 +4,7 @@
 The objective of this application is to manage all employees easily as possible. 
 Moreover, this application will also contains, project management, Task Management, Workflow processes for HR and Projects.
 
+Please click on this for core sample: https://github.com/gtkChop/EMPPortal/tree/master/emp-portal/EMApp/extensions/emappext-hr_mgmt/emappext/hr_mgmt
 
 #### Planned High Level Functionalities -
 
